@@ -1,22 +1,27 @@
 const express = require('express');
-const path = require('path'); // Import the 'path' module
+const path = require('path');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Import the Account model
 const Account = require('./models/Account');
 
-// Serve static files from the 'public' directory
-app.use(express.static('public'));
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(morgan('dev')); // Logging middleware
 
-// Define a route for the root URL
+// Routes
 app.get('/', (req, res) => {
-    // Use path.join to get the correct file path
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// API endpoints and other server logic here
-app.get('/api/accounts', async (req, res) => {
+const apiRouter = express.Router();
+
+apiRouter.get('/accounts', async (req, res) => {
     try {
         const accounts = await Account.findAll();
         res.json(accounts);
@@ -24,6 +29,14 @@ app.get('/api/accounts', async (req, res) => {
         console.error('Error fetching accounts:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+app.use('/api', apiRouter);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal server error' });
 });
 
 app.listen(port, () => {

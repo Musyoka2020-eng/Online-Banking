@@ -1,9 +1,10 @@
 {
   "name": "online-banking",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is a simple online banking system built using JavaScript, HTML, CSS, Node.js, Express, Sequelize, and MySQL. ###NB: This is not a complete project it's just a trial bootstrap",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"node server.js\" \"live-server --port=3000\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,7 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "morgan": "^1.10.0",
     "mysql2": "^3.9.1",
     "sequelize": "^6.35.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.1"
   }
 }

@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, 
-    initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
     <meta http-equiv="X-Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
 
@@ -14,34 +13,62 @@
 
 <body>
     <header>
-        <h1>Online Banking</h1>
+        <h1>Welcome to Hulu Banking</h1>
         <nav>
-            <ul>
-                <li><a href="#!">Home</a></li>
-                <li><a href="#!">Create Account</a></li>
-                <li><a href="#!">Login</a></li>
-            </ul>
+            <div class="nav-logo">
+                <span>Your Trusted Banking Partner</span>
+            </div>
+            <div class="nav-items">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="public/pages/create-account.html">Create Account</a></li>
+                    <li><a href="public/pages/login.html">Login</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
+
     <main>
-        <h2>Online Banking</h2>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
-        <p>Online Banking is a web application that allows users to create accounts and login to their accounts to view
-            their account information.</p>
+        <section class="hero">
+            <video autoplay muted loop id="hero-video">
+                <source src="public/media/videos/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-content">
+                <h2>Hulu Bank</h2>
+                <p>Empowering Your Financial Journey</p>
+                <a href="#learn-more" class="btn">Learn More</a>
+            </div>
+        </section>
+        <section class="features">
+            <div class="feature">
+                <img src="https://source.unsplash.com/400x250/?finance" alt="Feature 1">
+                <h3>Manage Your Account</h3>
+                <p>Effortlessly manage your account and stay on top of your finances.</p>
+            </div>
+            <div class="feature">
+                <img src="https://source.unsplash.com/400x250/?money" alt="Feature 2">
+                <h3>Transfer Money</h3>
+                <p>Securely transfer money to other accounts with just a few clicks.</p>
+            </div>
+            <div class="feature">
+                <img src="https://source.unsplash.com/400x250/?bills" alt="Feature 3">
+                <h3>Pay Bills</h3>
+                <p>Conveniently pay your bills online, saving you time and hassle.</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to get started?</h2>
+            <a href="public/pages/create-account.html" class="btn">Create Account</a>
+        </section>
     </main>
+
     <footer>
-        <p>Online Banking &copy; 2020</p>
+        <p>&copy; 2024 Hulu Banking. All rights reserved.</p>
     </footer>
-    <script src="js/script.js"></script>
+
+    <script src="public/js/script.js"></script>
 </body>
 
 </html>
