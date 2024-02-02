@@ -1,22 +1,34 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
+
 
 // Import the Account model
 const Account = require('./models/Account');
 
 // Middleware
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());
-app.use(morgan('dev')); // Logging middleware
+app.use(express.json());
 
+
+console.log(app.locals);
+function url(res, filename) {
+    return res.sendFile(path.join(__dirname, filename));
+}
 // Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    url(res, 'index.html');
+});
+
+app.get('/create-account', (req, res) => {
+    url(res, '/public/pages/create-account.html');
+});
+
+app.get('/login', (req, res) => {
+    url(res, '/public/pages/login.html');
 });
 
 const apiRouter = express.Router();
