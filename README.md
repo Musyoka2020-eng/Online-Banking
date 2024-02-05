@@ -1,7 +1,7 @@
 # Online Banking System
 
 This project is a simple online banking system built using JavaScript, HTML, CSS, Node.js, Express, Sequelize, and MySQL.
-###NB: This is not a complete project it's just a trial bootstrap
+### NB: This is not a complete project it's just a trial bootstrap
 
 ## Project Structure
 
