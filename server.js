@@ -1,153 +1,76 @@
-const express = require('express');
-const path = require('path');
-const multer = require('multer');
+const express = require("express");
+const path = require("path");
+const multer = require("multer");
+const { randomUUID } = require("crypto");
+const expressLayouts = require("express-ejs-layouts");
+const session = require("express-session");
 const upload = multer();
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const bcrypt = require('bcrypt');
-const { randomUUID } = require('crypto');
-const saltRounds = 10;
-
-
-
 const app = express();
+const db = require('./models');
 const port = process.env.PORT || 3000;
 
-// Import the Account model
-const Account = require('./models/Account');
 
 // Middleware
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(upload.array());
-app.use(cookieParser());
-app.use(session({ secret: 'randomUUID', resave: false, saveUninitialized: true, cookie: { maxAge: 60000 } }));
-
-function url(res, filename) {
-    if (!filename) {
-        return res.sendFile(path.join(__dirname, 'views/404.html'));
-    } else if (filename === '/') {
-        return res.sendFile(path.join(__dirname, 'index.html'));
+app.use(session({
+    secret: randomUUID(),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        sameSite: "strict",
+        secure: false,
+        httpOnly: true,
     }
+}));
+app.use(expressLayouts);
 
-    return res.sendFile(path.join(__dirname, filename));
-}
+// Pass __dirname to the views as a local variable
+app.use((req, res, next) => {
+    res.locals.__dirname = path.join(__dirname, "views");
+    next();
+});
 
-function checkAuth(req, res, next) {
-    if (!req.session.user_id) {
-        res.send('You are not authorized to view this page');
-    } else {
-        next();
-    }
-}
+// Pass the route variable to views as a local variable
+app.use((req, res, next) => {
+    res.locals.route = req.path;
+    next();
+});
 
-function isLoggedin(req) {
-    return req.session && req.session.user;
-}
-
+// Set the view engine
+app.set("view engine", "ejs");
+app.set("layout", "layouts/layout");
 
 // Routes
-app.get('/', (req, res) => {
-    url(res, 'index.html');
+const home = require("./routes/home");
+const createAccount = require("./routes/accounts");
+// const login = require("./routes/login");
+
+// Use the routes in the app
+app.use("/", home);
+app.use("/accounts", createAccount);
+// app.use("/login", login);
+
+(async () => {
+    await db.sequelize.sync()
+})();
+
+// Dashboard route
+app.get("/dashboard", (req, res) => {
+    res.render("dashboard", {
+        title: "Dashboard"
+    });
 });
 
-app.get('/create-account', (req, res) => {
-    if (isLoggedin(req)) {
-        return url(res, '/');
-    } else {
-        url(res, 'views/create-account.html');
-    }
+// 404 route
+app.use("*", (req, res) => {
+    res.render("404", {
+        title: "Page Not Found"
+    });
 });
 
-
-app.post('/register-account', async (req, res) => {
-    const { firstname, lastname, email, password } = req.body;
-    req.params
-
-    try {
-        // Hash the password before storing it
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const emailCheck = await Account.findOne({ where: { email: email } });
-        if (emailCheck) {
-            return res.status(409).json({ error: 'Email already exists' });
-        }
-        // Create the account in the database
-        const account = await Account.create({
-            firstName: firstname,
-            lastName: lastname,
-            email: email,
-            password: hashedPassword,
-        });
-
-
-        res.status(201).json(account);
-
-    } catch (error) {
-        console.error('Error creating account:', error);
-        res.status(501).json({ error: error.message });
-    }
-});
-
-
-app.get('/login', (req, res) => {
-    if (isLoggedin(req)) {
-        url(res, '/');
-        return res.status(409).json({ error: 'User already logged in' });
-    }
-    url(res, 'views/login.html');
-});
-
-app.post('/user-login', async (req, res) => {
-    if (isLoggedin(req)) {
-        url(res, '/');
-        return res.status(409).json({ error: 'User already logged in' });
-    }
-    const { email, password } = req.body;
-
-    try {
-        // Find the account in the database
-        const account = await Account.findOne({ where: { email: email } });
-
-        if (!account) {
-            return res.status(404).json({ error: 'Account not found' });
-        }
-        // Compare the hashed password with the input password
-        const passwordMatch = await bcrypt.compare(password, account.password);
-
-        if (!passwordMatch) {
-            return res.status(406).json({ error: 'Invalid password' });
-        }
-        // Save the account ID in the session
-        let userAccount = {
-            id: account.id,
-            firstName: account.firstName,
-            lastName: account.lastName,
-            email: account.email,
-            createdAt: account.createdAt,
-            updatedAt: account.updatedAt
-        };
-        req.session.user = userAccount;
-        res.status(200).json({ message: 'Login successful', user: userAccount });
-
-    } catch (error) {
-        console.error('Error logging in:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
-app.use((req, res, next) => {
-    if (isLoggedin(req)) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-});
-
-app.use('*', (req, res) => {
-    url(res, 'views/404.html');
-});
-
+// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

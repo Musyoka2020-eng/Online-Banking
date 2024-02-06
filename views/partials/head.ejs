@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+        content="script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="X-Content-Security-Policy"
+        content="script-src 'self' 'unsafe-inline';" />
+
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/forms.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Hulu Banking</h1>
+        <nav>
+            <div class="nav-logo">
+                <a href="/" style="text-decoration: none;color: white;">
+                    <span>Your Trusted
+                        Banking Partner</span></a>
+            </div>
+            <div class="nav-items">
+                <ul>
+                    <% if (route == '/') { %>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="accounts">Create Account</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    <% } else if (route == '/accounts') { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="accounts/login">Login</a></li>
+                    <% } else if (route == '/accounts/login') { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/accounts">Create Account</a></li>
+                    <% } else { %>
+                    <li><a href="/">Home</a></li>
+                    
+                    <% } %>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</body>
+
+</html>
