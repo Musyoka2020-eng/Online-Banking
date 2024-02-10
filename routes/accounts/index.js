@@ -5,9 +5,13 @@ const { account } = require('../../controllers')
 
 // User registration route
 router.get("/", (req, res) => {
-    res.render("create-account", {
-        title: "Create Account"
-    });
+    if (req.session.authenticated) {
+        return res.redirect("/dashboard");
+    } else {
+        res.render("create-account", {
+            title: "Create Account"
+        });
+    }
 });
 
 // User registration route
@@ -15,12 +19,20 @@ router.post("/register-account", account.create);
 
 // User login route
 router.get("/login", (req, res) => {
-    res.render("login", {
-        title: "Login"
-    });
+    if (req.session.authenticated) {
+        return res.redirect("/dashboard");
+    } else {
+        res.render("login", {
+            title: "Login"
+        });
+    }
 });
 
-router.post("/user-login", account.findOne);
+// User login route
+router.post("/user-login", account.login);
+
+//user logout route
+router.get("/logout", account.logout);
 
 // Export the router
 module.exports = router;

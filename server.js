@@ -16,11 +16,10 @@ app.use(express.json());
 app.use(upload.array());
 app.use(session({
     secret: randomUUID(),
-    resave: false,
     saveUninitialized: true,
     cookie: {
         sameSite: "strict",
-        secure: false,
+        // secure: true,
         httpOnly: true,
     }
 }));
@@ -38,29 +37,38 @@ app.use((req, res, next) => {
     next();
 });
 
+
 // Set the view engine
 app.set("view engine", "ejs");
 app.set("layout", "layouts/layout");
 
 // Routes
 const home = require("./routes/home");
-const createAccount = require("./routes/accounts");
+const account = require("./routes/accounts");
 // const login = require("./routes/login");
 
 // Use the routes in the app
 app.use("/", home);
-app.use("/accounts", createAccount);
+app.use("/accounts", account);
 // app.use("/login", login);
 
 (async () => {
     await db.sequelize.sync()
 })();
 
-// Dashboard route
-app.get("/dashboard", (req, res) => {
-    res.render("dashboard", {
-        title: "Dashboard"
-    });
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.session && req.session.authenticated) {
+        next();
+    } else {
+        res.redirect('/accounts/login'); 
+    }
+};
+
+// Route to render dashboard page
+app.get('/dashboard', isAuthenticated, (req, res) => {
+    // Render dashboard page only if user is authenticated
+    res.render('dashboard', { title: 'Dashboard', user: req.session.user });
 });
 
 // 404 route

@@ -1,19 +1,18 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const { models: { Account } } = require('../models'); // Import the account model
 
-const { models: { Account } } = require('../models');
-
+// The account controller
 module.exports = {
-    
-    create: async (req, res) => {
 
+    // The create function here
+    create: async (req, res) => {
         const {
             firstname,
             lastname,
             email,
             password
         } = req.body;
-
         try {
             // Hash the password before storing it
             const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -45,7 +44,8 @@ module.exports = {
         }
     },
 
-    findOne: async (req, res) => {
+    // The login function here
+    login: async (req, res) => {
         const {
             email,
             password
@@ -70,7 +70,7 @@ module.exports = {
                 });
             }
             // Save the account ID in the session
-            let userAccount = {
+            req.session.user = {
                 id: account.id,
                 firstName: account.firstName,
                 lastName: account.lastName,
@@ -78,14 +78,23 @@ module.exports = {
                 createdAt: account.createdAt,
                 updatedAt: account.updatedAt,
             };
+            req.session.authenticated = true;
             res.status(200).json({
                 message: "Login successful",
+                user: req.session.user
             });
+
         } catch (error) {
-            console.error("Error logging in:", error);
+            console.log("Error logging in:", error);
             res.status(500).json({
                 error: error.message
             });
         }
+    },
+
+    // The logout function here
+    logout: (req, res) => {
+        req.session.destroy();
+        res.redirect("/accounts/login");
     }
 }

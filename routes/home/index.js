@@ -3,9 +3,9 @@ const router = express.Router();
 
 // Home page route
 router.get("/", (req, res) => {
-    res.render("home", {
-        title: "Home"
-    });
+  res.render("home", {
+    title: "Home",
+  });
 });
 
 // About page route
