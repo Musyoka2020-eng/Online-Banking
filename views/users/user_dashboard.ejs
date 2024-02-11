@@ -1,0 +1,68 @@
+<div>
+    <div class="user-hero">
+        <h2>Welcome,
+            <%= user.name %>
+        </h2>
+        <p>Account Number:
+            <%= user.realAccountNo %>
+        </p>
+        <p>
+            Account Status:
+            <%= user.accountStatus %>
+        </p>
+    </div>
+    <div class="account-status">
+        <div class="account-info">
+            <h3>
+                <span>
+                    Account Balance:
+                </span>
+                <%= user.balance %>
+            </h3>
+            <p>
+                Type:
+                <%= user.accountType %>
+            </p>
+        </div>
+        <div class="account-actions">
+            <a href="/accounts/transfer">Transfer Money</a>
+            <a href="/accounts/pay">Pay Bills</a>
+            <a href="withdraw">Withdraw</a>
+            <a href="deposit">Deposit</a>
+        </div>
+    </div>
+    <div>
+        <h3>Recent Transactions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01/01/2021</td>
+                    <td>Deposit</td>
+                    <td>$500.00</td>
+                </tr>
+                <tr>
+                    <td>01/02/2021</td>
+                    <td>Withdrawal</td>
+                    <td>$100.00</td>
+                </tr>
+                <tr>
+                    <td>01/03/2021</td>
+                    <td>Transfer</td>
+                    <td>$200.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>Account Settings</h3>
+        <a href="/accounts/edit" class="btn">Edit Account</a>
+        <a href="/accounts/delete" class="btn">Delete Account</a>
+    </div>
+</div>

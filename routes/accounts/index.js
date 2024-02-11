@@ -6,7 +6,7 @@ const { account } = require('../../controllers')
 // User registration route
 router.get("/", (req, res) => {
     if (req.session.authenticated) {
-        return res.redirect("/dashboard");
+        return res.redirect("/userDashboard");
     } else {
         res.render("create-account", {
             title: "Create Account"
@@ -20,7 +20,7 @@ router.post("/register-account", account.create);
 // User login route
 router.get("/login", (req, res) => {
     if (req.session.authenticated) {
-        return res.redirect("/dashboard");
+        return res.redirect("/userDashboard");
     } else {
         res.render("login", {
             title: "Login"

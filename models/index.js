@@ -10,5 +10,6 @@ const db = {};
 db.sequelize = sequelize;
 db.models = {};
 db.models.Account = require('./Account')(sequelize, Sequelize.DataTypes);
+db.models.Trasaction = require('./Transaction')(sequelize, Sequelize.DataTypes);
 
 module.exports = db

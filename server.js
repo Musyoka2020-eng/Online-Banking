@@ -16,6 +16,7 @@ app.use(express.json());
 app.use(upload.array());
 app.use(session({
     secret: randomUUID(),
+    resave: false,
     saveUninitialized: true,
     cookie: {
         sameSite: "strict",
@@ -37,6 +38,29 @@ app.use((req, res, next) => {
     next();
 });
 
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+    if (req.session && req.session.authenticated) {
+        next();
+    } else {
+        res.redirect('accounts/login');
+    }
+};
+
+// Middleware to check if user is authenticated globally
+const isAuthenticatedGlobally = (req, res, next) => {
+    if (req.session && req.session.authenticated) {
+        res.locals.isAuthenticated = true; // Set a global variable
+    } else {
+        res.locals.isAuthenticated = false; // Set a global variable
+    }
+    next();
+};
+
+// Apply the global middleware to check authentication
+app.use(isAuthenticatedGlobally);
+
+
 
 // Set the view engine
 app.set("view engine", "ejs");
@@ -45,31 +69,16 @@ app.set("layout", "layouts/layout");
 // Routes
 const home = require("./routes/home");
 const account = require("./routes/accounts");
-// const login = require("./routes/login");
+const userDashboard = require("./routes/user");
 
 // Use the routes in the app
 app.use("/", home);
 app.use("/accounts", account);
-// app.use("/login", login);
+app.use("/userDashboard", isAuthenticated, userDashboard);
 
 (async () => {
     await db.sequelize.sync()
 })();
-
-// Middleware to check if user is authenticated
-const isAuthenticated = (req, res, next) => {
-    if (req.session && req.session.authenticated) {
-        next();
-    } else {
-        res.redirect('/accounts/login'); 
-    }
-};
-
-// Route to render dashboard page
-app.get('/dashboard', isAuthenticated, (req, res) => {
-    // Render dashboard page only if user is authenticated
-    res.render('dashboard', { title: 'Dashboard', user: req.session.user });
-});
 
 // 404 route
 app.use("*", (req, res) => {
@@ -81,4 +90,10 @@ app.use("*", (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
+    try {
+        db.sequelize.authenticate();
+        console.log("Connection has been established successfully.");
+    } catch (error) {
+        console.error("Unable to connect to the database:", error);
+    }
 });

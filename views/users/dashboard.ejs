@@ -1,0 +1,68 @@
+<main>
+    <!--Main Container-->
+    <div class="main">
+        <!-- Sidebar -->
+        <section class="dash-sidebar">
+            <div class="user-info">
+                <img src="upload/user_profile/<%= user.image %>"
+                    alt="User Image">
+                <h3>
+                    <%= user.name %>
+                </h3>
+                <p>
+                    <%= user.email %>
+                </p>
+                </img>
+            </div>
+            <div class="dashboard-links">
+                <ul>
+                    <li>
+                        <a href="userDashboard" id="user_dashboard"
+                            class="links">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/transfer" id="transfer_cash"
+                            class="links">Transfer
+                            Money</a>
+
+                    </li>
+                    <li>
+                        <a href="/accounts/pay" id="pay_bills" class="links">Pay
+                            Bills</a>
+                    </li>
+                    <li>
+                        <a href="edit_profile" id="edit_profile"
+                            class="links">Edit
+                            Account</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/ticket" id="ticket"
+                            class="links">Ticket</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/logout" class="links">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- Main Dashboard -->
+        <section class="main-dashboard">
+            <% if (route === '/userDashboard') { %>
+            <%- include(__dirname + '/users/user_dashboard.ejs') %>
+            <% } else { %>
+            <h1>
+                NO Proper Route
+            </h1>
+
+
+            
+            <% } %>
+        </section>
+    </div>
+</main>
+<script>
+    const userDashboard = document.getElementById('user_dashboard');
+    userDashboard.classList.add('active');
+</script>
+
+<script src="../../public/js/dashboard.js"></script>

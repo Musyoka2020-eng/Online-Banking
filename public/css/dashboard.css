@@ -1,8 +1,147 @@
-.body {
-    background-color: #f8f9fa;
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+.main {
+    display: flex;
+}
+
+.dash-sidebar {
+    width: 250px;
+    /* background-color: #333; */
+    color: #fff;
+    border-radius: 3px;
+}
+
+.user-info {
+    padding: 20px;
+    text-align: center;
+    background-color: #007bff;
+    border-bottom: 2px solid #0056b3;
+}
+
+.user-info img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+    transition: all 0.4s ease-in-out;
+}
+
+.user-info img:hover {
+    box-shadow: none;
+}
+
+.user-info h3,
+.user-info p {
     margin: 0;
+}
+
+.dashboard-links {
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    /* margin-top: 1em; */
+}
+
+.dashboard-links ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-links ul li {
+    width: 100%;
+    /* margin-bottom: 5px; */
+}
+
+.links {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-bottom: 1.5px solid #0056b3;
+    transition: all 0.3s ease;
+}
+
+.links:hover {
+    background-color: #0056b3;
+}
+
+.main-dashboard {
+    flex: 1;
+    padding: 20px;
+}
+
+.user-hero h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.user-hero p {
+    color: #777;
+}
+
+.account-status {
+    /* width: 100%; */
+    background-color: #d8d4d4;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.account-info {
+    margin-bottom: 5px;
+    width: 50%;
+}
+
+.account-info h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.account-info h3 span::after {
+    content: 'KSH';
+    color: #007bff;
+}
+
+.account-info p {
+    font-size: 18px;
+    color: #777;
+}
+
+.account-actions {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.account-actions a {
+    margin-right: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #007bff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.account-actions a:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
 }

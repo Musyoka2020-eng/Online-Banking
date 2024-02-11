@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(
                     `Account created Welcome to Hulu Banking ${data.firstName} ${data.lastName}`
                 );
-                window.location.href = 'login';
+                window.location.href = 'accounts/login';
             }
             if (response.status === 409) alert(
                 `An account already exists with the email address ${email}. Please use a different email address.`

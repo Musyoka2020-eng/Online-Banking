@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             if (response.status === 200) {
                 alert('Login successful');
-                window.location.href = '/dashboard';
+                window.location.href = '/userDashboard';
             } else if (response.status === 500) {
                 alert(
                     'An unexpected error occurred. Please try again.');

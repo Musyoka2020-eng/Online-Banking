@@ -1,6 +1,11 @@
 const bcrypt = require("bcrypt");
+const crypto = require('crypto');
 const saltRounds = 10;
 const { models: { Account } } = require('../models'); // Import the account model
+const e = require("express");
+const { encryptAccountNumber, decryptAccountNumber, obfuscateAccountNumber } = require('../config/accountEncrpt');
+
+
 
 // The account controller
 module.exports = {
@@ -69,12 +74,36 @@ module.exports = {
                     error: "Invalid password"
                 });
             }
+            const secretKey = '17c582d6b39247e62e93d3128c027015aa08771ae5f649de0201b9bfa9bfd389';
+            const accountNumber = account.accountNumber;
+
+            // Encrypt the account number
+            const encrypted = encryptAccountNumber(accountNumber, secretKey);
+            console.log('Encrypted:', encrypted);
+
+            // Decrypt the encrypted data
+            const decrypted = decryptAccountNumber(encrypted.encryptedData, encrypted.iv, secretKey);
+            console.log('Decrypted:', decrypted);
+
+            const obfuscated = obfuscateAccountNumber(accountNumber);
+            console.log(obfuscated); // Output: 1234********6789
+
             // Save the account ID in the session
             req.session.user = {
                 id: account.id,
                 firstName: account.firstName,
                 lastName: account.lastName,
+                name: `${account.firstName} ${account.lastName}`,
                 email: account.email,
+                image: account.image,
+                encryptedAccountNumber: encrypted,
+                accountNumber: decrypted,
+                realAccountNo: obfuscated,
+                accountType: account.accountType,
+                accountStatus: account.accountStatus,
+                balance: account.balance,
+                status: account.status,
+                role: account.role,
                 createdAt: account.createdAt,
                 updatedAt: account.updatedAt,
             };

@@ -1,23 +1,25 @@
 <main>
-    <section class="create-account">
-        <div class="registration-title">
-            <h3>Hulu Banking Registration</h3>
-        </div>
-        <form method="post">
-            <label for="firstname">FirstName:</label>
-            <input type="text" id="firstname" name="firstname" required>
-            <label for="lastname">LastName:</label>
-            <input type="text" id="lastname" name="lastname" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password"
-                required>
-            <button type="submit" id="create_account"
-                class="btn form-btn">Create Account</button>
-        </form>
-    </section>
+    <div class="form-container">
+        <section class="create-account">
+            <div class="registration-title">
+                <h3>Hulu Banking Registration</h3>
+            </div>
+            <form method="post">
+                <label for="firstname">FirstName:</label>
+                <input type="text" id="firstname" name="firstname" required>
+                <label for="lastname">LastName:</label>
+                <input type="text" id="lastname" name="lastname" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password"
+                    name="confirm-password" required>
+                <button type="submit" id="create_account"
+                    class="btn form-btn">Create Account</button>
+            </form>
+        </section>
+    </div>
 </main>
 <script src="/js/register.js"></script>
