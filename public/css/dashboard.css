@@ -145,3 +145,91 @@ table td {
 table th {
     background-color: #f2f2f2;
 }
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* Edit Profile */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #d8d4d4;
+    padding: 20px;
+}
+
+.profile-header h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-details {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.profile-form {
+    border: 1px solid #ddd;
+    padding: 5%;
+    border-radius: 5px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    column-gap: 40px;
+
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+
+}
+
+.input-group input {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.input-group button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin: 0;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
