@@ -74,7 +74,7 @@ const userDashboard = require("./routes/user");
 // Use the routes in the app
 app.use("/", home);
 app.use("/accounts", account);
-app.use("/userDashboard", isAuthenticated, userDashboard);
+app.use("/userDashboard", userDashboard);
 
 (async () => {
     await db.sequelize.sync()

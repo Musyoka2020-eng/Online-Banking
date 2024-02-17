@@ -4,20 +4,18 @@
         <!-- Sidebar -->
         <section class="dash-sidebar">
             <div class="user-info">
-                <img src="upload/user_profile/<%= user.image %>"
-                    alt="User Image">
+                <img class="profileImage" alt="User Image">
                 <h3>
                     <%= user.name %>
                 </h3>
                 <p>
                     <%= user.email %>
                 </p>
-                </img>
             </div>
             <div class="dashboard-links">
                 <ul>
                     <li>
-                        <a href="userDashboard" id="user_dashboard"
+                        <a href="/userDashboard" id="user_dashboard"
                             class="links">Dashboard</a>
                     </li>
                     <li>
@@ -31,7 +29,7 @@
                             Bills</a>
                     </li>
                     <li>
-                        <a href="edit_profile" id="edit_profile"
+                        <a href="/userDashboard/edit_profile" id="edit_profile"
                             class="links">Edit
                             Account</a>
                     </li>
@@ -49,12 +47,10 @@
         <section class="main-dashboard">
             <% if (route === '/userDashboard') { %>
             <%- include(__dirname + '/users/user_dashboard.ejs') %>
+            <% } else if (route === '/userDashboard/edit_profile') { %>
+            <%- include(__dirname + '/users/edit_profile.ejs') %>
             <% } else { %>
-            <h1>
-                NO Proper Route
-            </h1>
-
-
+            <%- include(__dirname + '/users/user_dashboard.ejs') %>
             
             <% } %>
         </section>
@@ -63,6 +59,9 @@
 <script>
     const userDashboard = document.getElementById('user_dashboard');
     userDashboard.classList.add('active');
+
+    var imageUrl = "/upload/user_profile/<%= user.image %>";
+    document.querySelector('.profileImage').src = imageUrl;
 </script>
 
-<script src="../../public/js/dashboard.js"></script>
+<script src="/public/js/dashboard.js"></script>
