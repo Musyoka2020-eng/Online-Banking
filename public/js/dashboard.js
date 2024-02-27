@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     // Get the current URL
     // var currentUrl = window.location.pathname;
     var imageUrl =
-        "/upload/user_profile/<%= user.image %>";
+        "/upload/user_profile/actual_image_url";
     document.querySelector('.profileImage').src = imageUrl;
 });

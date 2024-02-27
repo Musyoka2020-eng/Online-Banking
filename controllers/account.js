@@ -56,6 +56,7 @@ module.exports = {
             password
         } = req.body;
         try {
+            console.log(email, password);
             // Find the account in the database
             const account = await Account.findOne({
                 where: {
@@ -96,6 +97,11 @@ module.exports = {
                 name: `${account.firstName} ${account.lastName}`,
                 email: account.email,
                 image: account.image,
+                phone: account.phone,
+                address: account.address,
+                city: account.city,
+                gender: account.gender,
+                dateOfBirth: account.dateOfBirth,
                 encryptedAccountNumber: encrypted,
                 accountNumber: decrypted,
                 realAccountNo: obfuscated,
@@ -120,6 +126,24 @@ module.exports = {
             });
         }
     },
+
+    update: async (req, res) => {
+        const {
+            firstName,
+            lastName,
+            email,
+            phone,
+            address,
+            city,
+            gender,
+            dateOfBirth,
+            accountType,
+            oldpassword,
+            password, } = req.body;
+        try {
+        } catch (error) { }
+    },
+
 
     // The logout function here
     logout: (req, res) => {

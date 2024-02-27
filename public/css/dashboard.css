@@ -157,7 +157,9 @@ table tr:nth-child(even) {
     flex-direction: column;
     margin-bottom: 20px;
     background-color: #d8d4d4;
-    padding: 20px;
+    /* padding: 20px; */
+    /* width: 85%;
+    margin: 0 auto; */
 }
 
 .profile-header h2 {
@@ -167,19 +169,24 @@ table tr:nth-child(even) {
     margin-bottom: 10px;
 }
 
-.profile-details {
-    width: 50%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.profile-details p {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
+.profile-details p span {
+    color: #333;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .profile-form {
     border: 1px solid #ddd;
     padding: 5%;
     border-radius: 5px;
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -199,11 +206,12 @@ table tr:nth-child(even) {
     color: #333;
     margin-bottom: 10px;
     display: block;
-
+    margin: 10px;
 }
 
 .input-group input {
-    display: block;
+    width: 90%;
+    position: relative;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ddd;

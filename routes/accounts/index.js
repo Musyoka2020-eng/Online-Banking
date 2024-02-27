@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { account } = require('../../controllers')
+const { account } = require('../../controllers');
+const { redirect } = require("express/lib/response");
 
 
 // User registration route
@@ -27,6 +28,9 @@ router.get("/login", (req, res) => {
         });
     }
 });
+
+//Update user account
+router.get("/update-account", account.update);
 
 // User login route
 router.post("/user-login", account.login);

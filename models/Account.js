@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { createCanvas, registerFont } = require('canvas');
+const { type } = require('express/lib/response');
 
 // Register any custom fonts if needed
 registerFont('public/fonts/open-sans/OpenSans-Bold.ttf', { family: 'CustomFont' });
@@ -27,6 +28,26 @@ module.exports = (sequelize, DataTypes) => {
         },
         image: {
             type: DataTypes.STRING,
+            allowNull: true,
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        address: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        city: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        gender: {
+            type: DataTypes.ENUM('Male', 'Female', 'Other'),
+            allowNull: true,
+        },
+        dateOfBirth: {
+            type: DataTypes.DATEONLY,
             allowNull: true,
         },
         accountNumber: {
