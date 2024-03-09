@@ -30,7 +30,7 @@ router.get("/login", (req, res) => {
 });
 
 //Update user account
-router.get("/update-account", account.update);
+router.get("/update_profile", account.update);
 
 // User login route
 router.post("/user-login", account.login);
