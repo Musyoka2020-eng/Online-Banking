@@ -9,6 +9,7 @@ const sequelize = new Sequelize(dbConfig.DBNAME, dbConfig.USERNAME, dbConfig.PAS
 const db = {};
 db.sequelize = sequelize;
 db.models = {};
+db.models.Client = require('./Client')(sequelize, Sequelize.DataTypes);
 db.models.Account = require('./Account')(sequelize, Sequelize.DataTypes);
 db.models.Trasaction = require('./Transaction')(sequelize, Sequelize.DataTypes);
 

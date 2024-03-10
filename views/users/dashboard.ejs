@@ -4,7 +4,9 @@
         <!-- Sidebar -->
         <section class="dash-sidebar">
             <div class="user-info">
-                <img class="profileImage" alt="User Image">
+                <img class="profileImage"
+                    src="/user-profile/<%= user.image %>"
+                    alt="User Image">
                 <h3>
                     <%= user.name %>
                 </h3>
@@ -19,13 +21,13 @@
                             class="links">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/accounts/transfer" id="transfer_cash"
+                        <a href="/clients/transfer" id="transfer_cash"
                             class="links">Transfer
                             Money</a>
 
                     </li>
                     <li>
-                        <a href="/accounts/pay" id="pay_bills" class="links">Pay
+                        <a href="/clients/pay" id="pay_bills" class="links">Pay
                             Bills</a>
                     </li>
                     <li>
@@ -34,11 +36,11 @@
                             Account</a>
                     </li>
                     <li>
-                        <a href="/accounts/ticket" id="ticket"
+                        <a href="/clients/ticket" id="ticket"
                             class="links">Ticket</a>
                     </li>
                     <li>
-                        <a href="/accounts/logout" class="links">Logout</a>
+                        <a href="/clients/logout" class="links">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -60,8 +62,8 @@
     const userDashboard = document.getElementById('user_dashboard');
     userDashboard.classList.add('active');
 
-    var imageUrl = "/upload/user_profile/<%= user.image %>";
-    document.querySelector('.profileImage').src = imageUrl;
+    // var imageUrl = "/upload/user_profile/<%= user.image %>";
+    // document.querySelector('.profileImage').src = imageUrl;
 </script>
 
 <script src="/public/js/dashboard.js"></script>

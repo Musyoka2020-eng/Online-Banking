@@ -24,6 +24,13 @@ app.use(session({
         httpOnly: true,
     }
 }));
+//image rendering
+app.get('/user-profile/:imageFilename', (req, res) => {
+    const imageFilename = req.params.imageFilename;
+    const imagePath = (path.join(__dirname, 'public/upload/user_profile/', imageFilename));
+    res.sendFile(imagePath);
+});
+
 app.use(expressLayouts);
 
 // Pass __dirname to the views as a local variable
@@ -43,7 +50,7 @@ const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.authenticated) {
         next();
     } else {
-        res.redirect('accounts/login');
+        res.redirect('clients/login');
     }
 };
 
@@ -68,12 +75,12 @@ app.set("layout", "layouts/layout");
 
 // Routes
 const home = require("./routes/home");
-const account = require("./routes/accounts");
+const client = require("./routes/clients");
 const userDashboard = require("./routes/user");
 
-// Use the routes in the app
+// Use the routes middlewares in the app
 app.use("/", home);
-app.use("/accounts", account);
+app.use("/clients", client);
 app.use("/userDashboard", userDashboard);
 
 (async () => {

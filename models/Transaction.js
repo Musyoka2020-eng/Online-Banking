@@ -3,7 +3,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Transaction = sequelize.define('Transaction', {
         // Define your Transaction model fields
-        accountNumber: {
+        accountId: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -28,6 +28,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     });
+
+    // Associate Transaction with Account
+    Transaction.associate = (models) => {
+        Transaction.belongsTo(models.Account, {
+            foreignKey: 'accountId',
+            as: 'account',
+        });
+    };
 
     return Transaction;
 }

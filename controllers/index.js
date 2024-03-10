@@ -1,4 +1,4 @@
 const controllers = {};
-controllers.account = require('./account');
+controllers.client = require('./client');
 
 module.exports = controllers;

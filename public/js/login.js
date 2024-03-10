@@ -60,8 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Login successful');
                 window.location.href = '/userDashboard';
             } else if (response.status === 500) {
-                alert(
-                    'An unexpected error occurred. Please try again.');
+                alert('An unexpected error occurred. Please try again.');
             } else if (response.status === 404) {
                 alert('User not found');
             } else if (response.status === 406) {
