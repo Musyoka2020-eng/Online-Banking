@@ -198,6 +198,7 @@ table tr:nth-child(even) {
 }
 
 .input-group {
+    position: relative;
     flex: 1;
 }
 
@@ -240,4 +241,22 @@ table tr:nth-child(even) {
     color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.input-group button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.showPassword {
+    position: absolute;
+    right: 30px;
+    top: 75%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    transition: all 0.3s ease;
+}
+
+.showPassword:hover {
+    color: #333;
 }

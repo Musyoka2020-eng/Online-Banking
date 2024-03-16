@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    function validateLoginInput(email, password) {
+    function validateLoginInput({ loginData }) {
         const validateEmail = (email) => {
             const emailRegex = /^[^@]+@[^.]+\..+$/;
             if (!emailRegex.test(email)) {
@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return null;
         };
-        const emailError = validateEmail(email);
+        const emailError = validateEmail(loginData.email);
         if (emailError !== null) {
             return emailError;
         }
-        const passwordError = validatePassword(password);
+        const passwordError = validatePassword(loginData.password);
         if (passwordError !== null) {
             return passwordError;
         }
@@ -33,12 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const userLogin = document.getElementById('user_login');
     userLogin.addEventListener('click', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('email')
-            .value;
-        const password = document.getElementById(
-            'password').value;
-        const validationError = validateLoginInput(
-            email, password);
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const loginData = { email, password };
+        const validationError = validateLoginInput({ loginData });
         if (validationError) {
             alert(validationError);
             return;
@@ -50,10 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email,
-                    password
-                }),
+                body: JSON.stringify(loginData),
             });
             const data = await response.json();
             if (response.status === 200) {
@@ -69,13 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('User already logged in');
             } else {
                 // Handle other unexpected statuses gracefully
-                alert(
-                    'An unknown error occurred. Please try again.');
+                alert('An unknown error occurred. Please try again.');
+                console.error('Unknown error during login:', data.error);
             }
         } catch (error) {
             console.error('Error during login:', error);
-            alert(
-                'An unexpected error occurred. Please try again.');
+            alert('An unexpected error occurred. Please try again.');
         }
     });
 });

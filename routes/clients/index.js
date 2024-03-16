@@ -29,8 +29,17 @@ router.get("/login", (req, res) => {
     }
 });
 
+// User profile route
+router.get('/edit_profile', (req, res) => {
+    if (req.session.authenticated) {
+        res.render('users/dashboard', { title: 'Edit Profile', user: req.session.user });
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
 //Update user account
-router.get("/update_profile", client.update);
+router.put("/update-profile", client.update);
 
 // User login route
 router.post("/user-login", client.login);

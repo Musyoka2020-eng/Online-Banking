@@ -22,7 +22,7 @@
                 </p>
             </div>
         </div>
-        <form action="/clients/update_profile" method="POST">
+        <form action="#" method="PUT" id="update_profile_form">
             <div class="form-group">
                 <div class="input-group">
                     <label for="firstname">First Name</label>
@@ -69,8 +69,9 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" name="dob" id="dob"
+                    <label for="dateofbirth">Date of
+                        Birth<i>(mm/dd/yyy)</i></label>
+                    <input type="date" name="dateofbirth" id="dateofbirth"
                         value="<%= user.dateOfBirth %>"
                         required>
                 </div>
@@ -78,32 +79,36 @@
             <div class="form-group">
                 <div class="input-group">
                     <label for="accountType">Account Type</label>
-                    <select name="accountType" id="accountType">
-                        <option value="<%= user.accountType %>">
-                            <%= user.accountType %>
-                        <option value="savings">Savings</option>
-                        <option value="current">Current</option>
-                    </select>
+                    <input type="text"
+                        value="<%= user.accountType %>"
+                        disabled>
                 </div>
                 <div class="input-group">
                     <label for="oldpassword">Password</label>
-                    <input type="password" name="oldpassword" id="oldpassword"
+                    <input type="password" name="oldpassword" id="oldPassword"
                         required>
+                    <span class="showPassword" id="showOldPassword">Show</span>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <label for="password">New Password</label>
                     <input type="password" name="password" id="password">
+                    <span class="showPassword" id="showNewPassword">Show</span>
                 </div>
                 <div class="input-group">
-                    <label for="cpassword">Confirm Password</label>
-                    <input type="password" name="cpassword" id="cpassword">
+                    <label for="confirmpassword">Confirm Password</label>
+                    <input type="password" name="confirmpassword"
+                        id="confirmpassword">
+                    <span class="showPassword"
+                        id="showConfirmPassword">Show</span>
                 </div>
             </div>
             <div class="input-group">
-                <button type="submit" class="btn">Update</button>
+                <button type="submit" id="update_profile"
+                    class="btn">Update</button>
             </div>
         </form>
     </div>
 </div>
+<script src="/js/update_profile.js"></script>

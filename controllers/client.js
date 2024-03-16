@@ -5,6 +5,7 @@ const { models: { Client, Account } } = require('../models'); // Import the acco
 const e = require("express");
 const { encryptAccountNumber, decryptAccountNumber, obfuscateAccountNumber } = require('../helpers/accountEncrpt');
 const { createClientWithAccount } = require('../helpers/createClientWithAccount');
+const { status } = require("express/lib/response");
 
 
 
@@ -105,21 +106,21 @@ module.exports = {
                 }
             });
 
-            console.log('Account:', account);
+            // console.log('Account:', account);
 
             const secretKey = '17c582d6b39247e62e93d3128c027015aa08771ae5f649de0201b9bfa9bfd389';
             const accountNumber = account.accountNumber;
 
             // Encrypt the account number
             const encrypted = encryptAccountNumber(accountNumber, secretKey);
-            console.log('Encrypted:', encrypted);
+            // console.log('Encrypted:', encrypted);
 
             // Decrypt the encrypted data
             const decrypted = decryptAccountNumber(encrypted.encryptedData, encrypted.iv, secretKey);
-            console.log('Decrypted:', decrypted);
+            // console.log('Decrypted:', decrypted);
 
             const obfuscated = obfuscateAccountNumber(accountNumber);
-            console.log(obfuscated); // Output: 1234********6789
+            // console.log(obfuscated); // Output: 1234********6789
 
             // Save the Client ID in the session
             req.session.user = {
@@ -160,10 +161,58 @@ module.exports = {
     },
 
     update: async (req, res) => {
-        const { firstName, lastName, email, phone, address, city, gender,
-            dateOfBirth, accountType, oldpassword, password } = req.body;
         try {
-        } catch (error) { }
+            const { firstName, lastName, email, phone, address, city, gender, dateofbirth, oldPassword, password } = req.body;
+
+            // Validation
+            if (!oldPassword) {
+                return res.status(405).json({ error: "Old password is required" });
+            }
+
+            const client = await Client.findOne({ where: { id: req.session.user.id } });
+            if (!client) {
+                return res.status(404).json({ error: "User not found" });
+            }
+
+            const passwordMatch = await bcrypt.compare(oldPassword, client.password);
+            if (!passwordMatch) {
+                return res.status(406).json({ error: "Invalid password" });
+            }
+
+            // Update fields
+            const updatedFields = {
+                firstName: firstName || client.firstName,
+                lastName: lastName || client.lastName,
+                email: email || client.email,
+                phone: phone || client.phone,
+                address: address || client.address,
+                city: city || client.city,
+                gender: gender || client.gender,
+                dateOfBirth: dateofbirth || client.dateOfBirth
+            };
+
+            console.log('Updated fields:', updatedFields);
+
+            // If password is provided, hash it
+            if (password) {
+                updatedFields.password = await bcrypt.hash(password, saltRounds);
+            }
+
+            // Update client in the database
+            const [rowsAffected] = await Client.update(updatedFields, { where: { id: req.session.user.id } });
+
+            if (rowsAffected === 0) {
+                return res.status(500).json({ error: "An error occurred. Please try again" });
+            }
+
+            // Update session user
+            Object.assign(req.session.user, updatedFields);
+
+            res.status(200).json({ message: "Profile updated successfully", user: req.session.user });
+        } catch (error) {
+            console.error("Error updating client:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     },
 
 

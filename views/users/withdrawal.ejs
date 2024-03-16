@@ -1,0 +1,22 @@
+<div class="modal" id="withdrawModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Withdraw</h5>
+                <button type="button" class="close"
+                    data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/users/Withdraw" method="POST" id="modal-form">
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" class="form-control" id="amount"
+                            name="amount" required>
+                    </div>
+                    <button type="submit"
+                        class="btn btn-primary">Withdraw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

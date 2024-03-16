@@ -31,7 +31,7 @@
                             Bills</a>
                     </li>
                     <li>
-                        <a href="/userDashboard/edit_profile" id="edit_profile"
+                        <a href="/clients/edit_profile" id="edit_profile"
                             class="links">Edit
                             Account</a>
                     </li>
@@ -49,7 +49,7 @@
         <section class="main-dashboard">
             <% if (route === '/userDashboard') { %>
             <%- include(__dirname + '/users/user_dashboard.ejs') %>
-            <% } else if (route === '/userDashboard/edit_profile') { %>
+            <% } else if (route === '/clients/edit_profile') { %>
             <%- include(__dirname + '/users/edit_profile.ejs') %>
             <% } else { %>
             <%- include(__dirname + '/users/user_dashboard.ejs') %>
@@ -57,6 +57,11 @@
             <% } %>
         </section>
     </div>
+
+    <!-- Deposit PopUp -->
+    <%- include(__dirname + '/users/deposit.ejs') %>
+    <!-- Withdrawal PopUp -->
+    <%- include(__dirname + '/users/withdrawal.ejs') %>
 </main>
 <script>
     const userDashboard = document.getElementById('user_dashboard');
@@ -66,4 +71,4 @@
     // document.querySelector('.profileImage').src = imageUrl;
 </script>
 
-<script src="/public/js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>
