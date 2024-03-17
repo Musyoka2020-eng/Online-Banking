@@ -4,10 +4,11 @@
   "description": "This project is a simple online banking system built using JavaScript, HTML, CSS, Node.js, Express, Sequelize, and MySQL.\r ### NB: This is not a complete project it's just a trial bootstrap",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stephen Musyoka",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

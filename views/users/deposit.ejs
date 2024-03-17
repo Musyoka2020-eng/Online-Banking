@@ -7,16 +7,355 @@
                     data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="/users/deposit" method="POST" id="modal-form">
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number" class="form-control" id="amount"
-                            name="amount" required>
+                <div class="tab-bar">
+                    <div class="tab-bar-item" id="banks">
+                        <div class="tab-bar-item-content">
+                            <!-- <img src="/images/bank.png" alt="Bank"
+                                class="tab-bar-item-icon"> -->
+                            <span>Bank</span>
+                        </div>
                     </div>
-                    <button type="submit"
-                        class="btn btn-primary">Deposit</button>
-                </form>
+                    <div class="tab-bar-item" id="mobile">
+                        <div class="tab-bar-item-content">
+                            <!-- <img src="/images/mobile.png" alt="Mobile"
+                                class="tab-bar-item-icon"> -->
+                            <span>Mobile Money</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane" id="banks-tab">
+                        <div class="tab-info-icon" id="banks-tabinfo">
+                            <button>
+                                <!-- <img src="/images/visa.png" alt="Visa"
+                                    class="tab-info-icon"> -->
+                                <span>Info</span>
+                            </button>
+                        </div>
+                        <div class="tab-info-content"
+                            id="banks-tabinfo-content">
+                            <p>Deposit to your account using your bank
+                                account.</p>
+                            <ol>
+                                <li>
+                                    This service allows you to deposit money
+                                    into your account using your bank accounts
+                                    from our Hulu accounts you may be owning or
+                                    from other banks.
+                                </li>
+                                <li>
+                                    You can deposit money into your account from
+                                    any bank account you own.
+                                    <ul>
+                                        <li>Incase you want to transfer from an
+                                            account within Hulu please select
+                                            Hulu Bank for "Transfer From:"
+                                            options
+                                        </li>
+                                        <li>Incase you want to transfer from an
+                                            account from another bank please
+                                            select the bank from the "Transfer
+                                            From:" options</li>
+                                        <li>
+                                            Enter the account number you want to
+                                            transfer from
+                                        </li>
+                                        <li>
+                                            Select the account number you want
+                                            to deposit to
+                                        </li>
+                                        <li>
+                                            Enter the amount you want to deposit
+                                        </li>
+                                        <li>
+                                            Enter your password to confirm the
+                                            transaction
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    When you are done, click on the "Deposit
+                                    Now" button to complete the transaction.
+                                </li>
+                                <li>
+                                    You will receive a notification on your
+                                    phone to confirm the transaction.
+                                </li>
+                                <li>
+                                    You can click on the info icon to close this
+                                    information.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="tab-content-main">
+                            <div class="tab-title">
+                                <h4>Money Deposit</h4>
+                            </div>
+                            <div class="tab-body">
+                                <form action="/users/deposit" method="POST"
+                                    id="modal-form">
+                                    <div class="form-group">
+                                        <label for="Transferfrom">Transfer
+                                            From:</label>
+                                        <select name="Transferfrom"
+                                            id="Transferfrom"
+                                            class="form-control">
+                                            <option value="Hulu Bank">Hulu
+                                                Bank</option>
+                                            <option value="GTBank">GTBank
+                                            </option>
+                                            <option value="Zenith Bank">Zenith
+                                                Bank</option>
+                                            <option value="First Bank">First
+                                                Bank</option>
+                                            <option value="Access Bank">Access
+                                                Bank</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Bankaccount">Account
+                                            No:</label>
+                                        <input type="text" class="form-control"
+                                            id="Bankaccount" name="Bankaccount"
+                                            placeholder="Enter account number"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Depositto">Select Account
+                                            No:</label>
+                                        <select name="Depositto" id="Depositto"
+                                            class="form-control">
+                                            <option
+                                                value="<%= user.realAccountNo %>">
+                                                <%= user.realAccountNo %>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number"
+                                            class="form-control" id="amount"
+                                            name="amount"
+                                            placeholder="Enter amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Password">Enter
+                                            Password</label>
+                                        <input type="password"
+                                            class="form-control" id="Password"
+                                            name="Password"
+                                            placeholder="Enter password"
+                                            required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-footer">
+                                <button type="submit"
+                                    class="tab-submitbtn">Deposit Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="mobile-tab">
+                        <div class="tab-info-icon" id="mobile-tabinfo">
+                            <button>
+                                <!-- <img src="/images/visa.png" alt="Visa"
+                                    class="tab-info-icon"> -->
+                                <span>Info</span>
+                            </button>
+                        </div>
+                        <div class="tab-info-content"
+                            id="mobile-tabinfo-content">
+                            <p>Deposit to your account using your mobile account
+                            </p>
+                            <ol>
+                                <li>
+                                    This service allows you to deposit money
+                                    into your account using your mobile money
+                                    accounts to Hulu accounts you may be
+                                    owning.
+                                </li>
+                                <li>
+                                    You can deposit money into your account from
+                                    any mobile money account you own.
+                                    <ul>
+                                        <li>
+                                            Select the service provider you want
+                                            to transfer from
+                                        </li>
+                                        <li>
+                                            Enter the account number you want to
+                                            transfer from
+                                        </li>
+                                        <li>
+                                            Select the account number you want
+                                            to
+                                            transfer from
+                                        </li>
+                                        <li>
+                                            Select the account number you want
+                                            to deposit to
+                                        </li>
+                                        <li>
+                                            Enter the amount you want to deposit
+                                        </li>
+                                        <li>
+                                            Enter your password to confirm the
+                                            transaction
+                                        </li>
+                                    </ul>
+                                <li>
+                                    When you are done, click on the "Deposit
+                                    Now" button to complete the transaction.
+                                </li>
+                                <li>
+                                    You will receive a notification on your
+                                    phone to confirm the transaction.
+                                </li>
+                                <li>
+                                    You can click on the info icon to close this
+                                    information.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="tab-content-main">
+                            <div class="tab-title">
+                                <h4>Mobile Money Deposit</h4>
+                            </div>
+                            <div class="tab-body">
+                                <form action="/users/deposit" method="POST"
+                                    id="modal-form">
+                                    <div class="form-group">
+                                        <label for="Transferfrom">Service
+                                            Provider:</label>
+                                        <select name="Transferfrom"
+                                            id="Transferfrom"
+                                            class="form-control">
+                                            <option value="Safaricom">Safaricom
+                                            </option>
+                                            <option value="Airtel">Airtel
+                                            </option>
+                                            <option value="Vodafone">Vodafone
+                                            </option>
+                                            <option value="Telkom">Telkom
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Mobileaccount">Mobile
+                                            No:</label>
+                                        <input type="text" class="form-control"
+                                            id="Mobileaccount"
+                                            name="Mobileaccount"
+                                            placeholder="Enter account number"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Depositto">Select Account
+                                            No:</label>
+                                        <select name="Depositto" id="Depositto"
+                                            class="form-control">
+                                            <option
+                                                value="<%= user.realAccountNo %>">
+                                                <%= user.realAccountNo %>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number"
+                                            class="form-control" id="amount"
+                                            name="amount"
+                                            placeholder="Enter amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Password">Enter
+                                            Password</label>
+                                        <input type="password"
+                                            class="form-control" id="Password"
+                                            name="Password"
+                                            placeholder="Enter password"
+                                            required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-footer">
+                                <button type="submit"
+                                    class="tab-submitbtn">Deposit Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+            <script>
+                const tabItems = document.querySelectorAll('.tab-bar-item');
+                const tabContentItems = document.querySelectorAll(
+                    '.tab-content .tab-pane');
+                // Function to hide all tab content
+                function hideAllTabContent() {
+                    tabContentItems.forEach(item => {
+                        item.classList.remove('active-tab-content');
+                    });
+                }
+                // Function to show tab content based on the clicked tab
+                function showTabContent(tabId) {
+                    hideAllTabContent();
+                    tabItems.forEach(tab => {
+                        tab.classList.remove('active-tab');
+                    });
+                    const clickedTab = document.getElementById(tabId);
+                    clickedTab.classList.add('active-tab');
+                    // Hide all tab content
+                    // Show the selected tab content with animation
+                    const contentId = tabId + '-tab';
+                    const contentItem = document.getElementById(contentId);
+                    if (contentItem) {
+                        contentItem.classList.add('active-tab-content');
+                    }
+                }
+                // Show the default tab content (e.g., "Bank")
+                showTabContent('banks');
+                // Add click event listeners to tab items
+                tabItems.forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const clickedTabId = e.target.closest(
+                            '.tab-bar-item').id;
+                        hideAllTabContent();
+                        showTabContent(clickedTabId);
+                    });
+                });
+                const infoButton = document.querySelectorAll('.tab-info-icon');
+                const tabInfoContent = document.querySelectorAll(
+                    '.tab-info-content');
+
+                function hideAllTabInfoContent() {
+                    tabInfoContent.forEach(item => {
+                        item.classList.remove(
+                            'active-tab-info-content');
+                    });
+                }
+
+                function showTabInfoContent(tabId) {
+                    const contentId = tabId + '-tabinfo-content';
+                    const classname = 'active-tab-info-content';
+                    const contentItem = document.getElementById(contentId);
+                    if (contentItem) {
+                        if (contentItem.classList.contains(classname)) {
+                            hideAllTabInfoContent();
+                        } else {
+                            contentItem.classList.add(classname);
+                        }
+                    }
+                }
+                // Add click event listener to the "Info" button
+                infoButton.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        let infoButtonId = e.target.closest(
+                                '.tab-info-icon')
+                            .id;
+                        infoButtonId = infoButtonId.split('-')[
+                            0];
+                        console.log(infoButtonId);
+                        showTabInfoContent(infoButtonId);
+                    });
+                });
+            </script>

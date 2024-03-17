@@ -3,7 +3,7 @@
     position: fixed;
     z-index: 1000;
     left: 0;
-    top: 0;
+    top: -50px;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
@@ -32,6 +32,130 @@
 .modal-body {
     padding: 15px;
 }
+
+.tab-bar {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.tab-bar-item {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.tab-bar-item:hover {
+    border-radius: 5px;
+    background: #007bff;
+}
+
+.tab-bar-item.active-tab {
+    background: #04356353;
+    border-radius: 8px;
+}
+
+.tab-pane {
+    opacity: 0;
+    /* Start with 0 opacity */
+    transform: translateX(100%);
+    /* Move content off-screen to the right */
+    transition: opacity 10s ease, transform 10s ease;
+    /* Add transition for transform */
+    display: none;
+    /* Initially hide all tab content */
+}
+
+.tab-pane.active-tab-content {
+    opacity: 1;
+    /* Fade in content */
+    transform: translateX(0);
+    /* Slide content into view */
+    display: block;
+    /* Show active tab content */
+}
+
+.tab-info-icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    color: #007bff;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+
+.tab-info-content {
+    display: none;
+}
+
+.tab-info-content.active-tab-info-content {
+    display: block;
+}
+
+.tab-body {
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.tab-footer {
+    padding: 15px;
+    border-top: 1px solid #ccc;
+    text-align: right;
+}
+
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 8px;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.form-group select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.tab-submitbtn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+
 
 .close {
     position: absolute;
