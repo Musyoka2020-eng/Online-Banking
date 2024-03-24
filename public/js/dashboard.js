@@ -1,4 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    toggleModal('depositModal', 'depositBtn');
     toggleModal('withdrawModal', 'withdrawBtn');
+    toggleModal('depositModal', 'depositBtn');
 });

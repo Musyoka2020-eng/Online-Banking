@@ -1,0 +1,1 @@
+const { models: { Client, Account, Provider } } = require('../models');

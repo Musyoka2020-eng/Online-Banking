@@ -49,12 +49,12 @@
                                     <ul>
                                         <li>Incase you want to transfer from an
                                             account within Hulu please select
-                                            Hulu Bank for "Transfer From:"
+                                            Hulu Bank for "Deposit From:"
                                             options
                                         </li>
                                         <li>Incase you want to transfer from an
                                             account from another bank please
-                                            select the bank from the "Transfer
+                                            select the bank from the "Deposit
                                             From:" options</li>
                                         <li>
                                             Enter the account number you want to
@@ -89,16 +89,16 @@
                         </div>
                         <div class="tab-content-main">
                             <div class="tab-title">
-                                <h4>Money Deposit</h4>
+                                <h4>Bank Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="/users/deposit" method="POST"
-                                    id="modal-form">
+                                <form action="#" method="POST"
+                                    id="bank-modal-form">
                                     <div class="form-group">
-                                        <label for="Transferfrom">Transfer
+                                        <label for="Depositfrom">Deposit
                                             From:</label>
-                                        <select name="Transferfrom"
-                                            id="Transferfrom"
+                                        <select name="Depositfrom"
+                                            id="Depositfrom"
                                             class="form-control">
                                             <option value="Hulu Bank">Hulu
                                                 Bank</option>
@@ -150,8 +150,8 @@
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit"
-                                    class="tab-submitbtn">Deposit Now</button>
+                                <button type="submit" class="tab-submitbtn"
+                                    id="btn-bankdepo">Deposit Now</button>
                             </div>
                         </div>
                     </div>
@@ -219,16 +219,16 @@
                         </div>
                         <div class="tab-content-main">
                             <div class="tab-title">
-                                <h4>Mobile Money Deposit</h4>
+                                <h4>Mobile Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="/users/deposit" method="POST"
-                                    id="modal-form">
+                                <form action="#" method="POST"
+                                    id="mobile-modal-form">
                                     <div class="form-group">
-                                        <label for="Transferfrom">Service
+                                        <label for="Depositfrom">Service
                                             Provider:</label>
-                                        <select name="Transferfrom"
-                                            id="Transferfrom"
+                                        <select name="Depositfrom"
+                                            id="Depositfrom"
                                             class="form-control">
                                             <option value="Safaricom">Safaricom
                                             </option>
@@ -279,83 +279,13 @@
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit"
-                                    class="tab-submitbtn">Deposit Now</button>
+                                <button type="submit" class="tab-submitbtn"
+                                    id="btn-mobiledepo">Deposit Now</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <script>
-                const tabItems = document.querySelectorAll('.tab-bar-item');
-                const tabContentItems = document.querySelectorAll(
-                    '.tab-content .tab-pane');
-                // Function to hide all tab content
-                function hideAllTabContent() {
-                    tabContentItems.forEach(item => {
-                        item.classList.remove('active-tab-content');
-                    });
-                }
-                // Function to show tab content based on the clicked tab
-                function showTabContent(tabId) {
-                    hideAllTabContent();
-                    tabItems.forEach(tab => {
-                        tab.classList.remove('active-tab');
-                    });
-                    const clickedTab = document.getElementById(tabId);
-                    clickedTab.classList.add('active-tab');
-                    // Hide all tab content
-                    // Show the selected tab content with animation
-                    const contentId = tabId + '-tab';
-                    const contentItem = document.getElementById(contentId);
-                    if (contentItem) {
-                        contentItem.classList.add('active-tab-content');
-                    }
-                }
-                // Show the default tab content (e.g., "Bank")
-                showTabContent('banks');
-                // Add click event listeners to tab items
-                tabItems.forEach(item => {
-                    item.addEventListener('click', (e) => {
-                        const clickedTabId = e.target.closest(
-                            '.tab-bar-item').id;
-                        hideAllTabContent();
-                        showTabContent(clickedTabId);
-                    });
-                });
-                const infoButton = document.querySelectorAll('.tab-info-icon');
-                const tabInfoContent = document.querySelectorAll(
-                    '.tab-info-content');
-
-                function hideAllTabInfoContent() {
-                    tabInfoContent.forEach(item => {
-                        item.classList.remove(
-                            'active-tab-info-content');
-                    });
-                }
-
-                function showTabInfoContent(tabId) {
-                    const contentId = tabId + '-tabinfo-content';
-                    const classname = 'active-tab-info-content';
-                    const contentItem = document.getElementById(contentId);
-                    if (contentItem) {
-                        if (contentItem.classList.contains(classname)) {
-                            hideAllTabInfoContent();
-                        } else {
-                            contentItem.classList.add(classname);
-                        }
-                    }
-                }
-                // Add click event listener to the "Info" button
-                infoButton.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        let infoButtonId = e.target.closest(
-                                '.tab-info-icon')
-                            .id;
-                        infoButtonId = infoButtonId.split('-')[
-                            0];
-                        console.log(infoButtonId);
-                        showTabInfoContent(infoButtonId);
-                    });
-                });
-            </script>
+        </div>
+    </div>
+</div>

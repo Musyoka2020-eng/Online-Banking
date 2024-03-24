@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        providerId: {
+            type: DataTypes.INTEGER,
+            defaultValue: 1,
+        },
         accountNumber: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -45,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
         Account.belongsTo(models.Client, {
             foreignKey: 'clientId',
             as: 'client',
+        });
+    };
+
+    // Associate Account with Provider
+    Account.associate = (models) => {
+        Account.belongsTo(models.Provider, {
+            foreignKey: 'providerId',
+            as: 'provider',
         });
     };
 
