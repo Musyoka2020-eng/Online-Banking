@@ -33,32 +33,52 @@
     </div>
     <div>
         <h3>Recent Transactions</h3>
+        <p>
+            <b>NB: <i>The can be rearraged by clicking on the column headers (Date, Type, Description, Amount)</i></b>
+        </p>
         <table>
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Transaction</th>
-                    <th>Amount</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount (KSH)</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>01/01/2021</td>
-                    <td>Deposit</td>
-                    <td>$500.00</td>
-                </tr>
-                <tr>
-                    <td>01/02/2021</td>
-                    <td>Withdrawal</td>
-                    <td>$100.00</td>
-                </tr>
-                <tr>
-                    <td>01/03/2021</td>
-                    <td>Transfer</td>
-                    <td>$200.00</td>
-                </tr>
+                <% if (transactions===null || transactions.length===0) { %>
+                    <tr>
+                        <td colspan="3" style="text-align: center;font-weight: bold;font-size: 24px;">No transactions
+                            found</td>
+                    </tr>
+                    <% } else { transactions.forEach(transaction=> { %>
+                        <tr>
+                            <td>
+                                <%= transaction.date %>
+                            </td>
+                            <td>
+                                <%= transaction.transactionType %>
+                            </td>
+                            <td>
+                                <%= transaction.description %>
+                            </td>
+                            <td>
+                                <%= transaction.amount %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                            <% } %>
             </tbody>
         </table>
+        <div class="pagination">
+            <% if(totalPages>1) {
+                for(let i=1; i <=totalPages; i++) { %>
+                    <a href="/userDashboard?page=<%= i %>&itemsPerPage=<%= itemsPerPage %>">
+                        <%= i %>
+                    </a>
+                    <% } %>
+                        <% } %>
+        </div>
     </div>
     <div>
         <h3>Account Settings</h3>

@@ -11,7 +11,7 @@ db.sequelize = sequelize;
 db.models = {};
 db.models.Client = require('./Client')(sequelize, Sequelize.DataTypes);
 db.models.Account = require('./Account')(sequelize, Sequelize.DataTypes);
-db.models.Trasaction = require('./Transaction')(sequelize, Sequelize.DataTypes);
+db.models.Transaction = require('./Transaction')(sequelize, Sequelize.DataTypes);
 db.models.Provider = require('./Provider')(sequelize, Sequelize.DataTypes);
 
 module.exports = db

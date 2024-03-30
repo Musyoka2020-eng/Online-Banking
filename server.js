@@ -8,6 +8,8 @@ const upload = multer();
 const app = express();
 const db = require('./models');
 const port = process.env.PORT || 3000;
+// some global variables
+
 
 
 // Middleware

@@ -3,8 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Deposit</h5>
-                <button type="button" class="close"
-                    data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="tab-bar">
@@ -32,8 +31,7 @@
                                 <span>Info</span>
                             </button>
                         </div>
-                        <div class="tab-info-content"
-                            id="banks-tabinfo-content">
+                        <div class="tab-info-content" id="banks-tabinfo-content">
                             <p>Deposit to your account using your bank
                                 account.</p>
                             <ol>
@@ -92,14 +90,11 @@
                                 <h4>Bank Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST"
-                                    id="bank-modal-form">
+                                <form action="#" method="POST" id="bank-modal-form">
                                     <div class="form-group">
-                                        <label for="Depositfrom">Deposit
+                                        <label for="depositFrom">Deposit
                                             From:</label>
-                                        <select name="Depositfrom"
-                                            id="Depositfrom"
-                                            class="form-control">
+                                        <select name="depositFrom" id="depositFrom" class="form-control">
                                             <option value="Hulu Bank">Hulu
                                                 Bank</option>
                                             <option value="GTBank">GTBank
@@ -113,45 +108,35 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Bankaccount">Account
+                                        <label for="transferFrom">Account
                                             No:</label>
-                                        <input type="text" class="form-control"
-                                            id="Bankaccount" name="Bankaccount"
-                                            placeholder="Enter account number"
-                                            required>
+                                        <input type="text" class="form-control" id="transferFrom" name="transferFrom"
+                                            placeholder="Enter account number" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Depositto">Select Account
+                                        <label for="depositTo">Select Account
                                             No:</label>
-                                        <select name="Depositto" id="Depositto"
-                                            class="form-control">
-                                            <option
-                                                value="<%= user.realAccountNo %>">
+                                        <select name="depositTo" id="depositTo" class="form-control">
+                                            <option value="<%= user.realAccountNo %>">
                                                 <%= user.realAccountNo %>
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Amount</label>
-                                        <input type="number"
-                                            class="form-control" id="amount"
-                                            name="amount"
-                                            placeholder="Enter amount" required>
+                                        <input type="number" min="100" value="100" class="form-control" id="amount"
+                                            name="amount" placeholder="Enter amount" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Password">Enter
+                                        <label for="password">Enter
                                             Password</label>
-                                        <input type="password"
-                                            class="form-control" id="Password"
-                                            name="Password"
-                                            placeholder="Enter password"
-                                            required>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter password" required>
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit" class="tab-submitbtn"
-                                    id="btn-bankdepo">Deposit Now</button>
+                                <button type="submit" class="tab-submitbtn" id="btn-bankdepo">Deposit Now</button>
                             </div>
                         </div>
                     </div>
@@ -163,8 +148,7 @@
                                 <span>Info</span>
                             </button>
                         </div>
-                        <div class="tab-info-content"
-                            id="mobile-tabinfo-content">
+                        <div class="tab-info-content" id="mobile-tabinfo-content">
                             <p>Deposit to your account using your mobile account
                             </p>
                             <ol>
@@ -222,14 +206,11 @@
                                 <h4>Mobile Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST"
-                                    id="mobile-modal-form">
+                                <form action="#" method="POST" id="mobile-modal-form">
                                     <div class="form-group">
-                                        <label for="Depositfrom">Service
+                                        <label for="depositFrom">Service
                                             Provider:</label>
-                                        <select name="Depositfrom"
-                                            id="Depositfrom"
-                                            class="form-control">
+                                        <select name="depositFrom" id="depositFrom" class="form-control">
                                             <option value="Safaricom">Safaricom
                                             </option>
                                             <option value="Airtel">Airtel
@@ -241,46 +222,35 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Mobileaccount">Mobile
+                                        <label for="transferFrom">Mobile
                                             No:</label>
-                                        <input type="text" class="form-control"
-                                            id="Mobileaccount"
-                                            name="Mobileaccount"
-                                            placeholder="Enter account number"
-                                            required>
+                                        <input type="text" class="form-control" id="transferFrom" name="transferFrom"
+                                            placeholder="Enter account number" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Depositto">Select Account
+                                        <label for="depositTo">Select Account
                                             No:</label>
-                                        <select name="Depositto" id="Depositto"
-                                            class="form-control">
-                                            <option
-                                                value="<%= user.realAccountNo %>">
+                                        <select name="depositTo" id="depositTo" class="form-control">
+                                            <option value="<%= user.realAccountNo %>">
                                                 <%= user.realAccountNo %>
                                             </option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="amount">Amount</label>
-                                        <input type="number"
-                                            class="form-control" id="amount"
-                                            name="amount"
-                                            placeholder="Enter amount" required>
+                                        <input type="number" min="100" value="100" class="form-control" id="amount"
+                                            name="amount" placeholder="Enter amount" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Password">Enter
+                                        <label for="password">Enter
                                             Password</label>
-                                        <input type="password"
-                                            class="form-control" id="Password"
-                                            name="Password"
-                                            placeholder="Enter password"
-                                            required>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter password" required>
                                     </div>
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit" class="tab-submitbtn"
-                                    id="btn-mobiledepo">Deposit Now</button>
+                                <button type="submit" class="tab-submitbtn" id="btn-mobiledepo">Deposit Now</button>
                             </div>
                         </div>
                     </div>
@@ -289,3 +259,82 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    async function validateDepositForm(formData) {
+        const depositFrom = formData.get('depositFrom');
+        const transferFrom = formData.get('transferFrom');
+        const depositTo = formData.get('depositTo');
+        const amount = parseFloat(formData.get('amount'));
+        const password = formData.get('password');
+
+        if (!depositFrom.trim()) {
+            alert('Please select a bank to deposit from');
+            return false;
+        }
+
+        if (transferFrom.length < 10 || depositTo.length < 10) {
+            alert('Bank account number and deposit account number must be 10 digits');
+            return false;
+        }
+
+        if (isNaN(amount) || amount < 100) {
+            alert('Amount must be a valid number greater than or equal to 100');
+            return false;
+        }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            return false;
+        }
+
+        return true;
+    }
+
+    async function submitDepositForm(formData) {
+        try {
+            const response = await fetch('/userDashboard/deposit', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                let message = JSON.parse(await response.text()).error;
+                throw new Error('Failed to deposit: ' + message);
+            }
+            const result = await response.json();
+            return { status: response.status, result };
+        } catch (error) {
+            throw new Error('Failed to deposit: ' + error.message);
+        }
+    }
+
+    function handleDeposit(btnid) {
+        document.getElementById(btnid).addEventListener('click', async () => {
+            const btn = btnid.split('-')[1];
+            const id = btn === 'bankdepo' ? 'bank' : 'mobile';
+            const formData = new FormData(document.getElementById(`${id}-modal-form`));
+
+            try {
+                const isValid = await validateDepositForm(formData);
+
+                if (isValid) {
+                    const response = await submitDepositForm(formData);
+
+                    if (response.status === 201) {
+                        alert('Deposit successful');
+                        document.getElementById('depositModal').style.display = 'none';
+                        window.location.reload();
+                    } else {
+                        throw new Error('Failed to deposit: Unexpected status ' + response.status);
+                    }
+                }
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    }
+    handleDeposit('btn-bankdepo');
+    handleDeposit('btn-mobiledepo');
+</script>

@@ -4,9 +4,7 @@
         <!-- Sidebar -->
         <section class="dash-sidebar">
             <div class="user-info">
-                <img class="profileImage"
-                    src="/user-profile/<%= user.image %>"
-                    alt="User Image">
+                <img class="profileImage" src="/user-profile/<%= user.image %>" alt="User Image">
                 <h3>
                     <%= user.name %>
                 </h3>
@@ -17,28 +15,23 @@
             <div class="dashboard-links">
                 <ul class="sidelinks-list">
                     <li>
-                        <a href="/userDashboard" id="user_dashboard"
-                            class="sidelink">Dashboard</a>
+                        <a href="/userDashboard" id="user_dashboard" class="sidelink">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/clients/transfer" id="transfer_cash"
-                            class="sidelink">Transfer
+                        <a href="/clients/transfer" id="transfer_cash" class="sidelink">Transfer
                             Money</a>
 
                     </li>
                     <li>
-                        <a href="/clients/pay" id="pay_bills"
-                            class="sidelink">Pay
+                        <a href="/clients/pay" id="pay_bills" class="sidelink">Pay
                             Bills</a>
                     </li>
                     <li>
-                        <a href="/clients/edit_profile" id="edit_profile"
-                            class="sidelink">Edit
+                        <a href="/clients/edit_profile" id="edit_profile" class="sidelink">Edit
                             Account</a>
                     </li>
                     <li>
-                        <a href="/clients/ticket" id="ticket"
-                            class="sidelink">Ticket</a>
+                        <a href="/clients/ticket" id="ticket" class="sidelink">Ticket</a>
                     </li>
                     <li>
                         <a href="/clients/logout" class="sidelink">Logout</a>
@@ -48,21 +41,20 @@
         </section>
         <!-- Main Dashboard -->
         <section class="main-dashboard">
-            <% if (route === '/userDashboard') { %>
-            <%- include(__dirname + '/users/user_dashboard.ejs') %>
-            <% } else if (route === '/clients/edit_profile') { %>
-            <%- include(__dirname + '/users/edit_profile.ejs') %>
-            <% } else { %>
-            <%- include(__dirname + '/users/user_dashboard.ejs') %>
-            
-            <% } %>
+            <% if (route==='/userDashboard' ) { %>
+                <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
+                    <% } else if (route==='/clients/edit_profile' ) { %>
+                        <%- include(__dirname + '/users/edit_profile.ejs' ) %>
+                            <% } else { %>
+                                <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
+                                    <% } %>
         </section>
     </div>
 
     <!-- Deposit PopUp -->
-    <%- include(__dirname + '/users/deposit.ejs') %>
-    <!-- Withdrawal PopUp -->
-    <%- include(__dirname + '/users/withdrawal.ejs') %>
+    <%- include(__dirname + '/users/deposit.ejs' ) %>
+        <!-- Withdrawal PopUp -->
+        <%- include(__dirname + '/users/withdrawal.ejs' ) %>
 </main>
 <script>
     const userDashboard = document.getElementById('user_dashboard');

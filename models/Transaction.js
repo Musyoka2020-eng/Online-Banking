@@ -19,10 +19,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM('deposit', 'withdrawal', 'transfer'),
             allowNull: false,
         },
-        transactionDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
         reference: {
             type: DataTypes.STRING,
             allowNull: false,

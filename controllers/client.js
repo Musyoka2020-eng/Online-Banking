@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const saltRounds = 10;
 const { models: { Client, Account } } = require('../models'); // Import the account model
 const e = require("express");
-const { encryptAccountNumber, decryptAccountNumber, obfuscateAccountNumber } = require('../helpers/accountEncrpt');
+const { obfuscateAccountNumber } = require('../helpers/accountEncrpt');
 const { createClientWithAccount } = require('../helpers/createClientWithAccount');
 const { status } = require("express/lib/response");
 
@@ -44,7 +44,7 @@ module.exports = {
                 password: hashedPassword, // Hashed password
             };
 
-            console.log('Client data:', clientData);
+            // console.log('Client data:', clientData);
 
             const accountData = {
                 accountType: 'current',
@@ -105,19 +105,7 @@ module.exports = {
                     clientId: client.id
                 }
             });
-
-            // console.log('Account:', account);
-
-            const secretKey = '17c582d6b39247e62e93d3128c027015aa08771ae5f649de0201b9bfa9bfd389';
             const accountNumber = account.accountNumber;
-
-            // Encrypt the account number
-            const encrypted = encryptAccountNumber(accountNumber, secretKey);
-            // console.log('Encrypted:', encrypted);
-
-            // Decrypt the encrypted data
-            const decrypted = decryptAccountNumber(encrypted.encryptedData, encrypted.iv, secretKey);
-            // console.log('Decrypted:', decrypted);
 
             const obfuscated = obfuscateAccountNumber(accountNumber);
             // console.log(obfuscated); // Output: 1234********6789
@@ -135,8 +123,6 @@ module.exports = {
                 city: client.city,
                 gender: client.gender,
                 dateOfBirth: client.dateOfBirth,
-                encryptedAccountNumber: encrypted,
-                accountNumber: decrypted,
                 realAccountNo: obfuscated,
                 accountType: account.accountType,
                 accountStatus: account.accountStatus,
