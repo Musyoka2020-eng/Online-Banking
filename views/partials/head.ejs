@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy"
-        content="script-src 'self' 'unsafe-inline';" />
-    <meta http-equiv="X-Content-Security-Policy"
-        content="script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="X-Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
     <title>
         <%= title %>
@@ -16,6 +14,7 @@
     <link rel="stylesheet" href="/css/forms.css" />
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/paybill.css">
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 
@@ -31,48 +30,28 @@
             <div class="nav-items">
                 <ul>
                     <% if (isAuthenticated) { %>
-                    <% if (route == '/') { %>
-                    <li><a href="/userDashboard">Dashboard</a></li>
-                    <li><a href="/clients/logout">Logout</a></li>
-                    <% } else { %>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/clients/logout">Logout</a></li>
-
-
-
-
-
-
-
-
-
-                    
-                    <% } %>
-                    <% } else { %>
-                    <% if (route == '/') { %>
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/clients">Create Account</a></li>
-                    <li><a href="clients/login">Login</a></li>
-                    <% } else if (route == '/clients') { %>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="clients/login">Login</a></li>
-                    <% } else if (route == '/clients/login') { %>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/clients">Create Account</a></li>
-                    <% } else { %>
-                    <li><a href="/">Home</a></li>
-
-
-
-
-
-
-
-
-                    
-                    <% } %>
-                    
-                    <% } %>
+                        <% if (route=='/' ) { %>
+                            <li><a href="/userDashboard">Dashboard</a></li>
+                            <li><a href="/clients/logout">Logout</a></li>
+                            <% } else { %>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/clients/logout">Logout</a></li>
+                                <% } %>
+                                    <% } else { %>
+                                        <% if (route=='/' ) { %>
+                                            <li><a href="/" class="active">Home</a></li>
+                                            <li><a href="/clients">Create Account</a></li>
+                                            <li><a href="clients/login">Login</a></li>
+                                            <% } else if (route=='/clients' ) { %>
+                                                <li><a href="/">Home</a></li>
+                                                <li><a href="clients/login">Login</a></li>
+                                                <% } else if (route=='/clients/login' ) { %>
+                                                    <li><a href="/">Home</a></li>
+                                                    <li><a href="/clients">Create Account</a></li>
+                                                    <% } else { %>
+                                                        <li><a href="/">Home</a></li>
+                                                        <% } %>
+                                                            <% } %>
                 </ul>
             </div>
         </nav>

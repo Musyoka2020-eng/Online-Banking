@@ -306,7 +306,7 @@
             const result = await response.json();
             return { status: response.status, result };
         } catch (error) {
-            throw new Error('Failed to deposit: ' + error.message);
+            return { status: 500, error: error.message };
         }
     }
 
@@ -323,11 +323,13 @@
                     const response = await submitDepositForm(formData);
 
                     if (response.status === 201) {
-                        alert('Deposit successful');
+                        alert('Deposit successful, Thank you for banking with us.');
                         document.getElementById('depositModal').style.display = 'none';
                         window.location.reload();
+                    } else if (response.status === 500) {
+                        alert('Failed to deposit: ' + response.error);
                     } else {
-                        throw new Error('Failed to deposit: Unexpected status ' + response.status);
+                        alert('Failed to deposit, please try again later');
                     }
                 }
             } catch (error) {
@@ -335,6 +337,9 @@
             }
         });
     }
-    handleDeposit('btn-bankdepo');
-    handleDeposit('btn-mobiledepo');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        handleDeposit('btn-bankdepo');
+        handleDeposit('btn-mobiledepo');
+    });
 </script>

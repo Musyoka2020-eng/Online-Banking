@@ -79,6 +79,54 @@ module.exports = {
         } catch (error) {
             return res.status(500).json({ error: error.message });
         }
+    },
+
+    withdraw: async (req, res) => {
+        try {
+            const { transferTo, withdrawFrom, amount, password } = req.body;
+            const client = await Client.findOne({ where: { email: req.session.user.email } });
+            const currentPass = client.password;
+            const match = await bcrypt.compare(password, currentPass);
+            if (!match) return res.status(406).json({ error: "Invalid password" });
+
+            const accounts = await Account.findAll({ where: { clientId: client.id } });
+            const accountNumber = accounts.find(account => obfuscateAccountNumber(account.accountNumber) === withdrawFrom)?.accountNumber;
+
+            const transaction = await sequelize.transaction();
+            try {
+                const withdrawAccount = await Account.findOne({ where: { accountNumber } });
+                if (!withdrawAccount) return res.status(404).json({ error: "Account not found" });
+
+                const parsedAmount = parseInt(amount);
+                if (parsedAmount < 0) return res.status(400).json({ error: "Invalid amount" });
+
+                if (parsedAmount > withdrawAccount.balance) return res.status(400).json({ error: "Insufficient funds" });
+
+                const newBalance = { balance: parseInt(withdrawAccount.balance) - parsedAmount };
+                const updatedAccount = await withdrawAccount.update(newBalance, { transaction });
+
+                const transferData = {
+                    accountId: withdrawAccount.id,
+                    amount: parsedAmount,
+                    transactionType: 'debit',
+                    transactionDescription: 'withdrawal',
+                    reference: transferTo
+                };
+                await Transaction.create(transferData, { transaction });
+                await transaction.commit();
+
+                Object.assign(req.session.user, { balance: updatedAccount.balance });
+
+                return res.status(201).json({ message: 'Withdrawal successful' });
+            } catch (error) {
+                await transaction.rollback();
+                return res.status(500).json({ error: error.message });
+            }
+
+        } catch (error) {
+            return res.status(500).json({ error: error.message });
+        }
+
     }
 };
 

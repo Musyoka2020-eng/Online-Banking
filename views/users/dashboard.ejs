@@ -45,9 +45,11 @@
                 <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
                     <% } else if (route==='/clients/edit_profile' ) { %>
                         <%- include(__dirname + '/users/edit_profile.ejs' ) %>
-                            <% } else { %>
-                                <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
-                                    <% } %>
+                            <% } else if (route==='/userDashboard/paybills' ) { %>
+                                <%- include(__dirname + '/users/paybills.ejs' ) %>
+                                    <% } else { %>
+                                        <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
+                                            <% } %>
         </section>
     </div>
 

@@ -34,5 +34,21 @@ router.post('/deposit', (req, res) => {
     }
 });
 
+router.post('/withdraw', (req, res) => {
+    if (req.session.authenticated) {
+        account.withdraw(req, res);
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
+router.get('/paybills', (req, res) => {
+    if (req.session.authenticated) {
+        res.render('users/dashboard', { title: 'Pay Bills', user: req.session.user });
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
 // Export the router
 module.exports = router;

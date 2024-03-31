@@ -1,10 +1,7 @@
 function toggleModal(modalId, btnId) {
-    const modals = [];
-    modals.push(modalId);
     const modal = document.getElementById(modalId);
     const btn = document.getElementById(btnId);
     const modalForm = modal.querySelectorAll('form');
-
     // console.log('Modal: ' + modalId + ' Button: ' + btnId);
 
     if (btn) {
@@ -13,6 +10,7 @@ function toggleModal(modalId, btnId) {
             const toggleModalView = getComputedStyle(modal).display === 'none' ? 'block' : 'none';
             // console.log('Toggle modal view: ' + toggleModalView);
             modal.style.display = toggleModalView;
+            getmId(modal)
             windowOnClick(modal);
             trapFocus(modal);
         });
@@ -98,8 +96,16 @@ function showTabContent(tabId) {
         contentItem.classList.add('active-tab-content');
     }
 }
-// Show the default tab content (e.g., "Bank")
-showTabContent('banks');
+function getmId(modal) {
+    const modalId = modal.id;
+    if (/^depo.*/i.test(modalId)) {
+        showTabContent('banks');
+    }
+    if (/^withdraw.*/i.test(modalId)) {
+        showTabContent('agents');
+    }
+}
+
 // Add click event listeners to tab items
 tabItems.forEach(item => {
     item.addEventListener('click', (e) => {
@@ -139,7 +145,7 @@ infoButton.forEach(button => {
             .id;
         infoButtonId = infoButtonId.split('-')[
             0];
-        console.log(infoButtonId);
+        // console.log(infoButtonId);
         showTabInfoContent(infoButtonId);
     });
 });

@@ -3,20 +3,286 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Withdraw</h5>
-                <button type="button" class="close"
-                    data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" id="modal-form">
-                    <div class="form-group">
-                        <label for="amount">Amount</label>
-                        <input type="number" class="form-control" id="amount"
-                            name="amount" placeholder="Enter amount" required>
+                <div class="tab-bar">
+                    <div class="tab-bar-item" id="agents">
+                        <div class="tab-bar-item-content">
+                            <!-- <img src="/images/bank.png" alt="Bank"
+                                class="tab-bar-item-icon"> -->
+                            <span>Agent</span>
+                        </div>
                     </div>
-                    <button type="submit"
-                        class="btn btn-primary">Withdraw</button>
-                </form>
+                    <div class="tab-bar-item" id="wmobile">
+                        <div class="tab-bar-item-content">
+                            <!-- <img src="/images/mobile.png" alt="Mobile"
+                                class="tab-bar-item-icon"> -->
+                            <span>Mobile Withdraw</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane" id="agents-tab">
+                        <div class="tab-info-icon" id="agents-tabinfo">
+                            <button>
+                                <!-- <img src="/images/visa.png" alt="Visa"
+                                    class="tab-info-icon"> -->
+                                <span>Info</span>
+                            </button>
+                        </div>
+                        <div class="tab-info-content" id="agents-tabinfo-content">
+                            <p>Withdraw from your account via agent.</p>
+                            <ol>
+                                <li>
+                                    This service allows you to withdraw money
+                                    from your Hulu account via agent.
+                                </li>
+                                <li>
+                                    You can withdraw money from your account via
+                                    any Hulu agent.
+                                    <ul>
+                                        <li>
+                                            Enter the agent number you want to
+                                            use.
+                                        </li>
+                                        <li>
+                                            Select the account number you want
+                                            to withdraw from
+                                        </li>
+                                        <li>
+                                            Enter the amount you want to withdraw
+                                        </li>
+                                        <li>
+                                            Enter your password to confirm the
+                                            transaction
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    When you are done, click on the "Withdraw
+                                    Now" button to complete the transaction.
+                                </li>
+                                <li>
+                                    You will receive a notification on your
+                                    phone to confirm the transaction.
+                                </li>
+                                <li>
+                                    You can click on the info icon to close this
+                                    information.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="tab-content-main">
+                            <div class="tab-title">
+                                <h4>Agent Withdraw</h4>
+                            </div>
+                            <div class="tab-body">
+                                <form action="#" method="POST" id="agent-modal-form">
+                                    <div class="form-group">
+                                        <label for="transferTo">Agent Number:</label>
+                                        <input type="number" class="form-control" id="transferTo" name="transferTo"
+                                            placeholder="Enter agent number" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="withdrawFrom">Select Account
+                                            No:</label>
+                                        <select name="withdrawFrom" id="withdrawFrom" class="form-control">
+                                            <option value="<%= user.realAccountNo %>">
+                                                <%= user.realAccountNo %>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number" min="100" value="100" class="form-control" id="amount"
+                                            name="amount" placeholder="Enter amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Enter
+                                            Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter password" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-footer">
+                                <button type="submit" class="tab-submitbtn" id="btn-agent-wd">Withdraw Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="wmobile-tab">
+                        <div class="tab-info-icon" id="wmobile-tabinfo">
+                            <button>
+                                <!-- <img src="/images/visa.png" alt="Visa"
+                                    class="tab-info-icon"> -->
+                                <span>Info</span>
+                            </button>
+                        </div>
+                        <div class="tab-info-content" id="wmobile-tabinfo-content">
+                            <p>Withdraw from your account using your mobile account
+                            </p>
+                            <ol>
+                                <li>
+                                    This service allows you to withdraw money
+                                    from your Hulu account to your mobile money
+                                    account.
+                                </li>
+                                <li>
+                                    You can withdraw money from your account to
+                                    any mobile money account you own.
+                                    <ul>
+                                        <li>
+                                            Enter the mobile number you want to
+                                            transfer to
+                                        </li>
+                                        <li>
+                                            Select the account number you want
+                                            to
+                                            transfer from
+                                        </li>
+                                        <li>
+                                            Enter the amount you want to deposit
+                                        </li>
+                                        <li>
+                                            Enter your password to confirm the
+                                            transaction
+                                        </li>
+                                    </ul>
+                                <li>
+                                    When you are done, click on the "Withdraw
+                                    Now" button to complete the transaction.
+                                </li>
+                                <li>
+                                    You will receive a notification on your
+                                    phone to confirm the transaction.
+                                </li>
+                                <li>
+                                    You can click on the info icon to close this
+                                    information.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="tab-content-main">
+                            <div class="tab-title">
+                                <h4>Mobile Deposit</h4>
+                            </div>
+                            <div class="tab-body">
+                                <form action="#" method="POST" id="wmobile-modal-form">
+                                    <div class="form-group">
+                                        <label for="transferTo">Mobile Number:</label>
+                                        <input type="number" class="form-control" id="transferTo" name="transferTo"
+                                            placeholder="Enter mobile number" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="withdrawFrom">Select Account
+                                            No:</label>
+                                        <select name="withdrawFrom" id="withdrawFrom" class="form-control">
+                                            <option value="<%= user.realAccountNo %>">
+                                                <%= user.realAccountNo %>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="amount">Amount</label>
+                                        <input type="number" min="100" value="100" class="form-control" id="amount"
+                                            name="amount" placeholder="Enter amount" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Enter
+                                            Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter password" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-footer">
+                                <button type="submit" class="tab-submitbtn" id="btn-wmobile-wd">Withdraw Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    async function validateWithdrawForms(wformData) {
+        let isValid = true;
+        let amount = wformData.get('amount');
+        let password = wformData.get('password');
+        let transferTo = wformData.get('transferTo');
+        let withdrawFrom = wformData.get('withdrawFrom');
+
+        if (amount < 100) {
+            alert('Amount must be at least 100');
+            isValid = false;
+        }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters');
+            isValid = false;
+        }
+
+        if (transferTo.length < 5) {
+            alert('Invalid account number');
+            isValid = false;
+        }
+
+        if (withdrawFrom.length < 10) {
+            alert('Invalid account number');
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    async function submitWithdrawForm(wformData) {
+        try {
+            let response = await fetch('/userDashboard/withdraw', {
+                method: 'POST',
+                body: wformData
+            });
+
+            if (!response.ok) {
+                let message = JSON.parse(await response.text()).error;
+                throw new Error('Withdrawal failed' + message);
+            }
+            const result = await response.json();
+            return { status: response.status, result };
+        } catch (error) {
+            return { status: 500, error: error.message };
+        }
+    }
+
+    function handleWithdraw(buttonId) {
+        const btn = document.getElementById(buttonId);
+        //btn-wmobile-wd
+        let parts = buttonId.split("-");
+        let fId = parts[1];
+        btn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const form = document.getElementById(`${fId}-modal-form`);
+            const wformData = new FormData(form);
+            const isValid = await validateWithdrawForms(wformData);
+            if (isValid) {
+                let response = await submitWithdrawForm(wformData);
+                if (response.status === 201) {
+                    alert('Withdrawal successful, Thank you for banking with us.');
+                    document.getElementById('withdrawModal').style.display = 'none';
+                    window.location.reload();
+                } else if (response.status === 500) {
+                    alert('Withdrawal failed: , ' + response.error);
+                } else {
+                    alert('Withdrawal failed, please try again later');
+                }
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        handleWithdraw('btn-agent-wd');
+        handleWithdraw('btn-wmobile-wd');
+    });
+</script>
