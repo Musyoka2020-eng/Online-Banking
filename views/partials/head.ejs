@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/modal.css">
     <link rel="stylesheet" href="/css/paybill.css">
+    <link rel="stylesheet" href="/css/transfer.css">
+    <link rel="stylesheet" href="/css/ticket.css">
     <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
 
@@ -30,28 +32,28 @@
             <div class="nav-items">
                 <ul>
                     <% if (isAuthenticated) { %>
-                        <% if (route=='/' ) { %>
-                            <li><a href="/userDashboard">Dashboard</a></li>
-                            <li><a href="/clients/logout">Logout</a></li>
-                            <% } else { %>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/clients/logout">Logout</a></li>
-                                <% } %>
-                                    <% } else { %>
-                                        <% if (route=='/' ) { %>
-                                            <li><a href="/" class="active">Home</a></li>
-                                            <li><a href="/clients">Create Account</a></li>
-                                            <li><a href="clients/login">Login</a></li>
-                                            <% } else if (route=='/clients' ) { %>
-                                                <li><a href="/">Home</a></li>
-                                                <li><a href="clients/login">Login</a></li>
-                                                <% } else if (route=='/clients/login' ) { %>
-                                                    <li><a href="/">Home</a></li>
-                                                    <li><a href="/clients">Create Account</a></li>
-                                                    <% } else { %>
-                                                        <li><a href="/">Home</a></li>
-                                                        <% } %>
-                                                            <% } %>
+                    <% if (route=='/' ) { %>
+                    <li><a href="/userDashboard">Dashboard</a></li>
+                    <li><a href="/clients/logout">Logout</a></li>
+                    <% } else { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/clients/logout">Logout</a></li>
+                    <% } %>
+                    <% } else { %>
+                    <% if (route=='/' ) { %>
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="/clients">Create Account</a></li>
+                    <li><a href="clients/login">Login</a></li>
+                    <% } else if (route=='/clients' ) { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="clients/login">Login</a></li>
+                    <% } else if (route=='/clients/login' ) { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/clients">Create Account</a></li>
+                    <% } else { %>
+                    <li><a href="/">Home</a></li>
+                    <% } %>
+                    <% } %>
                 </ul>
             </div>
         </nav>

@@ -32,12 +32,18 @@
 .paybill-service-item {
     width: 100%;
     max-width: 160px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px #ccc;
     transition: all 0.3s;
+}
+
+.paybill-service-item:hover {
+    box-shadow: 0 0 10px #ccc;
+    transform: scale(1.05) rotateY(3deg) rotateX(5deg) rotateZ(5deg);
+    cursor: pointer;
 }
 
 .paybill-service-item img {

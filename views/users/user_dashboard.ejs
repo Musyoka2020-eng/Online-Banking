@@ -25,7 +25,7 @@
             </p>
         </div>
         <div class="account-actions">
-            <a href="/accounts/transfer">Transfer Money</a>
+            <a href="/userDashboard/transfer">Transfer Money</a>
             <a href="/userDashboard/paybills">Pay Bills</a>
             <a id="withdrawBtn">Withdraw</a>
             <a id="depositBtn">Deposit</a>
@@ -47,37 +47,37 @@
             </thead>
             <tbody>
                 <% if (transactions===null || transactions.length===0) { %>
-                    <tr>
-                        <td colspan="3" style="text-align: center;font-weight: bold;font-size: 24px;">No transactions
-                            found</td>
-                    </tr>
-                    <% } else { transactions.forEach(transaction=> { %>
-                        <tr>
-                            <td>
-                                <%= transaction.date %>
-                            </td>
-                            <td>
-                                <%= transaction.transactionType %>
-                            </td>
-                            <td>
-                                <%= transaction.description %>
-                            </td>
-                            <td>
-                                <%= transaction.amount %>
-                            </td>
-                        </tr>
-                        <% }) %>
-                            <% } %>
+                <tr>
+                    <td colspan="3" style="text-align: center;font-weight: bold;font-size: 24px;">No transactions
+                        found</td>
+                </tr>
+                <% } else { transactions.forEach(transaction=> { %>
+                <tr>
+                    <td>
+                        <%= transaction.date %>
+                    </td>
+                    <td>
+                        <%= transaction.transactionType %>
+                    </td>
+                    <td>
+                        <%= transaction.description %>
+                    </td>
+                    <td>
+                        <%= transaction.amount %>
+                    </td>
+                </tr>
+                <% }) %>
+                <% } %>
             </tbody>
         </table>
         <div class="pagination">
             <% if(totalPages>1) {
                 for(let i=1; i <=totalPages; i++) { %>
-                    <a href="/userDashboard?page=<%= i %>&itemsPerPage=<%= itemsPerPage %>">
-                        <%= i %>
-                    </a>
-                    <% } %>
-                        <% } %>
+            <a href="/userDashboard?page=<%= i %>&itemsPerPage=<%= itemsPerPage %>">
+                <%= i %>
+            </a>
+            <% } %>
+            <% } %>
         </div>
     </div>
     <div>

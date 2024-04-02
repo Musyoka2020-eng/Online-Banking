@@ -50,5 +50,21 @@ router.get('/paybills', (req, res) => {
     }
 });
 
+router.get('/transfer', (req, res) => {
+    if (req.session.authenticated) {
+        res.render('users/dashboard', { title: 'Transfer Money', user: req.session.user });
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
+router.get('/ticket', (req, res) => {
+    if (req.session.authenticated) {
+        res.render('users/dashboard', { title: 'Ticket', user: req.session.user });
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
 // Export the router
 module.exports = router;

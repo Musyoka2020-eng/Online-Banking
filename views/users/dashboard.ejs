@@ -18,12 +18,11 @@
                         <a href="/userDashboard" id="user_dashboard" class="sidelink">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/clients/transfer" id="transfer_cash" class="sidelink">Transfer
+                        <a href="/userDashboard/transfer" id="transfer_cash" class="sidelink">Transfer
                             Money</a>
-
                     </li>
                     <li>
-                        <a href="/clients/pay" id="pay_bills" class="sidelink">Pay
+                        <a href="/userDashboard/paybills" id="pay_bills" class="sidelink">Pay
                             Bills</a>
                     </li>
                     <li>
@@ -31,7 +30,7 @@
                             Account</a>
                     </li>
                     <li>
-                        <a href="/clients/ticket" id="ticket" class="sidelink">Ticket</a>
+                        <a href="/userDashboard/ticket" id="ticket" class="sidelink">Ticket</a>
                     </li>
                     <li>
                         <a href="/clients/logout" class="sidelink">Logout</a>
@@ -42,21 +41,25 @@
         <!-- Main Dashboard -->
         <section class="main-dashboard">
             <% if (route==='/userDashboard' ) { %>
-                <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
-                    <% } else if (route==='/clients/edit_profile' ) { %>
-                        <%- include(__dirname + '/users/edit_profile.ejs' ) %>
-                            <% } else if (route==='/userDashboard/paybills' ) { %>
-                                <%- include(__dirname + '/users/paybills.ejs' ) %>
-                                    <% } else { %>
-                                        <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
-                                            <% } %>
+            <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
+            <% } else if (route==='/clients/edit_profile' ) { %>
+            <%- include(__dirname + '/users/edit_profile.ejs' ) %>
+            <% } else if (route==='/userDashboard/paybills' ) { %>
+            <%- include(__dirname + '/users/paybills.ejs' ) %>
+            <% } else if (route==='/userDashboard/transfer' ) { %>
+            <%- include(__dirname + '/users/transfer.ejs' ) %>
+            <% } else if (route==='/userDashboard/ticket' ) { %>
+            <%- include(__dirname + '/users/ticket.ejs' ) %>
+            <% } else { %>
+            <%- include(__dirname + '/users/user_dashboard.ejs' ) %>
+            <% } %>
         </section>
     </div>
 
     <!-- Deposit PopUp -->
     <%- include(__dirname + '/users/deposit.ejs' ) %>
-        <!-- Withdrawal PopUp -->
-        <%- include(__dirname + '/users/withdrawal.ejs' ) %>
+    <!-- Withdrawal PopUp -->
+    <%- include(__dirname + '/users/withdrawal.ejs' ) %>
 </main>
 <script>
     const userDashboard = document.getElementById('user_dashboard');

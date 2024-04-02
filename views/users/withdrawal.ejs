@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 <div class="tab-bar">
-                    <div class="tab-bar-item" id="agents">
+                    <div class="tab-bar-item" id="wagents">
                         <div class="tab-bar-item-content">
                             <!-- <img src="/images/bank.png" alt="Bank"
                                 class="tab-bar-item-icon"> -->
@@ -23,15 +23,15 @@
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane" id="agents-tab">
-                        <div class="tab-info-icon" id="agents-tabinfo">
+                    <div class="tab-pane" id="wagents-tab">
+                        <div class="tab-info-icon" id="wagents-tabinfo">
                             <button>
                                 <!-- <img src="/images/visa.png" alt="Visa"
                                     class="tab-info-icon"> -->
                                 <span>Info</span>
                             </button>
                         </div>
-                        <div class="tab-info-content" id="agents-tabinfo-content">
+                        <div class="tab-info-content" id="wagents-tabinfo-content">
                             <p>Withdraw from your account via agent.</p>
                             <ol>
                                 <li>
@@ -78,7 +78,7 @@
                                 <h4>Agent Withdraw</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST" id="agent-modal-form">
+                                <form action="#" method="POST" id="wagent-modal-form">
                                     <div class="form-group">
                                         <label for="transferTo">Agent Number:</label>
                                         <input type="number" class="form-control" id="transferTo" name="transferTo"
@@ -107,7 +107,7 @@
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit" class="tab-submitbtn" id="btn-agent-wd">Withdraw Now</button>
+                                <button type="submit" class="tab-submitbtn" id="btn-wagent-wd">Withdraw Now</button>
                             </div>
                         </div>
                     </div>
@@ -206,83 +206,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    async function validateWithdrawForms(wformData) {
-        let isValid = true;
-        let amount = wformData.get('amount');
-        let password = wformData.get('password');
-        let transferTo = wformData.get('transferTo');
-        let withdrawFrom = wformData.get('withdrawFrom');
-
-        if (amount < 100) {
-            alert('Amount must be at least 100');
-            isValid = false;
-        }
-
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters');
-            isValid = false;
-        }
-
-        if (transferTo.length < 5) {
-            alert('Invalid account number');
-            isValid = false;
-        }
-
-        if (withdrawFrom.length < 10) {
-            alert('Invalid account number');
-            isValid = false;
-        }
-
-        return isValid;
-    }
-
-    async function submitWithdrawForm(wformData) {
-        try {
-            let response = await fetch('/userDashboard/withdraw', {
-                method: 'POST',
-                body: wformData
-            });
-
-            if (!response.ok) {
-                let message = JSON.parse(await response.text()).error;
-                throw new Error('Withdrawal failed' + message);
-            }
-            const result = await response.json();
-            return { status: response.status, result };
-        } catch (error) {
-            return { status: 500, error: error.message };
-        }
-    }
-
-    function handleWithdraw(buttonId) {
-        const btn = document.getElementById(buttonId);
-        //btn-wmobile-wd
-        let parts = buttonId.split("-");
-        let fId = parts[1];
-        btn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            const form = document.getElementById(`${fId}-modal-form`);
-            const wformData = new FormData(form);
-            const isValid = await validateWithdrawForms(wformData);
-            if (isValid) {
-                let response = await submitWithdrawForm(wformData);
-                if (response.status === 201) {
-                    alert('Withdrawal successful, Thank you for banking with us.');
-                    document.getElementById('withdrawModal').style.display = 'none';
-                    window.location.reload();
-                } else if (response.status === 500) {
-                    alert('Withdrawal failed: , ' + response.error);
-                } else {
-                    alert('Withdrawal failed, please try again later');
-                }
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        handleWithdraw('btn-agent-wd');
-        handleWithdraw('btn-wmobile-wd');
-    });
-</script>
+<script src="/js/withdraw.js"></script>

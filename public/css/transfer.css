@@ -1,0 +1,54 @@
+.transfer-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.transfer-header {
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.transfer-title {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.transfer-title h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+
+}
+
+.transfer-title p {
+    font-size: 16px;
+    color: #666;
+}
+
+.transfer-header .dashbtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #f1f1f1;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.transfer-body {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: flex-start; */
+    padding: 10px;
+}
+
+.transfer-form {
+    /* width: 50%; */
+    margin-right: 20px;
+}

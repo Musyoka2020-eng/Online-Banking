@@ -1,0 +1,54 @@
+<div class="chat-outer-container">
+    <div class="chat-header">
+        <div class="chat-title">
+            <h4>Ticket Chat</h4>
+            <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
+        </div>
+        <div class="backdash">
+            <a href="/userDashboard" class="backdash-link">Dashboard</a>
+        </div>
+    </div>
+    <div class="chat-inner-container">
+        <div id="chat-window" class="chat-window">
+            <div id="feedback" class="feedback-message">
+                <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
+            </div>
+            <div id="requester" class="requester-message">
+                <p>Typing...</p>
+            </div>
+        </div>
+        <div class="input-window">
+            <div class="inputs">
+                <input id="handle" class="handle-input" type="text" placeholder="Handle" />
+                <textarea id="message" class="message-input" placeholder="Message"></textarea>
+            </div>
+            <div class="btns">
+                <button id="send" class="send-chat-btn send">Send</button>
+                <button id="send" class="send-chat-btn cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <h1>Previous Tickets</h1>
+    <div id="tickets" class="tickets">
+        <div class="ticket">
+            <div class="ticket-info">
+                <h3>Subject</h3>
+                <p>Message</p>
+            </div>
+            <div class="ticket-view">
+                View Ticket
+            </div>
+        </div>
+        <div class="ticket">
+            <div class="ticket-info">
+                <h3>Subject</h3>
+                <p>Message</p>
+            </div>
+            <div class="ticket-view">
+                View Ticket
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/ticket.js"></script>

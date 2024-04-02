@@ -7,11 +7,11 @@
             </div>
             <div class="modal-body">
                 <div class="tab-bar">
-                    <div class="tab-bar-item" id="banks">
+                    <div class="tab-bar-item" id="agents">
                         <div class="tab-bar-item-content">
                             <!-- <img src="/images/bank.png" alt="Bank"
                                 class="tab-bar-item-icon"> -->
-                            <span>Bank</span>
+                            <span>Agent</span>
                         </div>
                     </div>
                     <div class="tab-bar-item" id="mobile">
@@ -23,15 +23,15 @@
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane" id="banks-tab">
-                        <div class="tab-info-icon" id="banks-tabinfo">
+                    <div class="tab-pane" id="agents-tab">
+                        <div class="tab-info-icon" id="agents-tabinfo">
                             <button>
                                 <!-- <img src="/images/visa.png" alt="Visa"
                                     class="tab-info-icon"> -->
                                 <span>Info</span>
                             </button>
                         </div>
-                        <div class="tab-info-content" id="banks-tabinfo-content">
+                        <div class="tab-info-content" id="agents-tabinfo-content">
                             <p>Deposit to your account using your bank
                                 account.</p>
                             <ol>
@@ -87,11 +87,11 @@
                         </div>
                         <div class="tab-content-main">
                             <div class="tab-title">
-                                <h4>Bank Deposit</h4>
+                                <h4>Agent Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST" id="bank-modal-form">
-                                    <div class="form-group">
+                                <form action="#" method="POST" id="agent-modal-form">
+                                    <!-- <div class="form-group">
                                         <label for="depositFrom">Deposit
                                             From:</label>
                                         <select name="depositFrom" id="depositFrom" class="form-control">
@@ -106,12 +106,12 @@
                                             <option value="Access Bank">Access
                                                 Bank</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
-                                        <label for="transferFrom">Account
+                                        <label for="transferFrom">Agent
                                             No:</label>
                                         <input type="text" class="form-control" id="transferFrom" name="transferFrom"
-                                            placeholder="Enter account number" required>
+                                            placeholder="Enter agent number" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="depositTo">Select Account
@@ -136,7 +136,7 @@
                                 </form>
                             </div>
                             <div class="tab-footer">
-                                <button type="submit" class="tab-submitbtn" id="btn-bankdepo">Deposit Now</button>
+                                <button type="submit" class="tab-submitbtn" id="btn-agentdepo">Deposit Now</button>
                             </div>
                         </div>
                     </div>
@@ -260,86 +260,4 @@
     </div>
 </div>
 
-
-<script>
-    async function validateDepositForm(formData) {
-        const depositFrom = formData.get('depositFrom');
-        const transferFrom = formData.get('transferFrom');
-        const depositTo = formData.get('depositTo');
-        const amount = parseFloat(formData.get('amount'));
-        const password = formData.get('password');
-
-        if (!depositFrom.trim()) {
-            alert('Please select a bank to deposit from');
-            return false;
-        }
-
-        if (transferFrom.length < 10 || depositTo.length < 10) {
-            alert('Bank account number and deposit account number must be 10 digits');
-            return false;
-        }
-
-        if (isNaN(amount) || amount < 100) {
-            alert('Amount must be a valid number greater than or equal to 100');
-            return false;
-        }
-
-        if (password.length < 6) {
-            alert('Password must be at least 6 characters');
-            return false;
-        }
-
-        return true;
-    }
-
-    async function submitDepositForm(formData) {
-        try {
-            const response = await fetch('/userDashboard/deposit', {
-                method: 'POST',
-                body: formData
-            });
-
-            if (!response.ok) {
-                let message = JSON.parse(await response.text()).error;
-                throw new Error('Failed to deposit: ' + message);
-            }
-            const result = await response.json();
-            return { status: response.status, result };
-        } catch (error) {
-            return { status: 500, error: error.message };
-        }
-    }
-
-    function handleDeposit(btnid) {
-        document.getElementById(btnid).addEventListener('click', async () => {
-            const btn = btnid.split('-')[1];
-            const id = btn === 'bankdepo' ? 'bank' : 'mobile';
-            const formData = new FormData(document.getElementById(`${id}-modal-form`));
-
-            try {
-                const isValid = await validateDepositForm(formData);
-
-                if (isValid) {
-                    const response = await submitDepositForm(formData);
-
-                    if (response.status === 201) {
-                        alert('Deposit successful, Thank you for banking with us.');
-                        document.getElementById('depositModal').style.display = 'none';
-                        window.location.reload();
-                    } else if (response.status === 500) {
-                        alert('Failed to deposit: ' + response.error);
-                    } else {
-                        alert('Failed to deposit, please try again later');
-                    }
-                }
-            } catch (error) {
-                alert(error.message);
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        handleDeposit('btn-bankdepo');
-        handleDeposit('btn-mobiledepo');
-    });
-</script>
+<script src="/js/deposit.js"></script>

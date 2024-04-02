@@ -99,10 +99,10 @@ function showTabContent(tabId) {
 function getmId(modal) {
     const modalId = modal.id;
     if (/^depo.*/i.test(modalId)) {
-        showTabContent('banks');
+        showTabContent('agents');
     }
     if (/^withdraw.*/i.test(modalId)) {
-        showTabContent('agents');
+        showTabContent('wagents');
     }
 }
 
