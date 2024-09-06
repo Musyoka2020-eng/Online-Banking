@@ -37,13 +37,18 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px #ccc;
-    transition: all 0.3s;
+    transition: all 0.4s ease-in-out;
 }
 
 .paybill-service-item:hover {
     box-shadow: 0 0 10px #ccc;
     transform: scale(1.05) rotateY(3deg) rotateX(5deg) rotateZ(5deg);
     cursor: pointer;
+}
+
+/* for even service items on hover */
+.paybill-service-item:nth-child(even):hover {
+    transform: scale(1.05) rotateY(-3deg) rotateX(-5deg) rotateZ(-5deg);
 }
 
 .paybill-service-item img {

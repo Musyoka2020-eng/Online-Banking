@@ -14,17 +14,18 @@
                 <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
             </div>
             <div id="requester" class="requester-message">
-                <p>Typing...</p>
+                <p>Hello.</p>
             </div>
         </div>
         <div class="input-window">
             <div class="inputs">
-                <input id="handle" class="handle-input" type="text" placeholder="Handle" />
+                <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
+                    placeholder="Handle" />
                 <textarea id="message" class="message-input" placeholder="Message"></textarea>
             </div>
             <div class="btns">
                 <button id="send" class="send-chat-btn send">Send</button>
-                <button id="send" class="send-chat-btn cancel">Cancel</button>
+                <button id="cancel" class="send-chat-btn cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -51,4 +52,5 @@
         </div>
     </div>
 </div>
+
 <script src="/js/ticket.js"></script>
