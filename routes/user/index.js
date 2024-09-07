@@ -8,8 +8,8 @@ const { transaction } = require('../../controllers/account');
 router.get('/', async (req, res) => {
     if (req.session.authenticated) {
         try {
-            const page = parseInt(req.query.page) || 1;
-            const itemsPerPage = parseInt(req.query.itemsPerPage) || 5;
+            const page = Number.parseInt(req.query.page) || 1;
+            const itemsPerPage = Number.parseInt(req.query.itemsPerPage) || 5;
             const transactions = await transaction(req, res); // Assuming this fetches the transactions
             const startIndex = (page - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;

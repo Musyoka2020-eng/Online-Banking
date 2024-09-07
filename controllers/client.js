@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const saltRounds = 10;
 const { models: { Client, Account } } = require('../models'); // Import the account model
 const e = require("express");

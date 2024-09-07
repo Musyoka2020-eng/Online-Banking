@@ -6,12 +6,12 @@ const { redirect } = require("express/lib/response");
 
 // User registration route
 router.get("/", (req, res) => {
-    if (req.session.authenticated) {
-        return res.redirect("/userDashboard");
-    } else {
+    if (!req.session.authenticated) {
         res.render("create-client", {
             title: "Create User"
         });
+    } else {
+        return res.redirect("/userDashboard");
     }
 });
 
@@ -20,12 +20,12 @@ router.post("/register-client", client.create);
 
 // User login route
 router.get("/login", (req, res) => {
-    if (req.session.authenticated) {
-        return res.redirect("/userDashboard");
-    } else {
+    if (!req.session.authenticated) {
         res.render("login", {
             title: "Login"
         });
+    } else {
+        return res.redirect("/userDashboard");
     }
 });
 

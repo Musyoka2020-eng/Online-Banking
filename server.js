@@ -1,7 +1,7 @@
 const express = require("express");
-const path = require("path");
+const path = require("node:path");
 const multer = require("multer");
-const { randomUUID } = require("crypto");
+const { randomUUID } = require("node:crypto");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const upload = multer();
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
-    if (req.session && req.session.authenticated) {
+    if (req.session?.authenticated) {
         next();
     } else {
         res.redirect('clients/login');
@@ -58,7 +58,7 @@ const isAuthenticated = (req, res, next) => {
 
 // Middleware to check if user is authenticated globally
 const isAuthenticatedGlobally = (req, res, next) => {
-    if (req.session && req.session.authenticated) {
+    if (req.session?.authenticated) {
         res.locals.isAuthenticated = true; // Set a global variable
     } else {
         res.locals.isAuthenticated = false; // Set a global variable

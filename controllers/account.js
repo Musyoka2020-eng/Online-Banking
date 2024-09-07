@@ -20,10 +20,10 @@ module.exports = {
                 const depositAccount = await Account.findOne({ where: { accountNumber } });
                 if (!depositAccount) return res.status(404).json({ error: "Account not found" });
 
-                const parsedAmount = parseInt(amount);
+                const parsedAmount = Number.parseInt(amount);
                 if (parsedAmount < 0) return res.status(400).json({ error: "Invalid amount" });
 
-                const newBalance = { balance: parseInt(depositAccount.balance) + parsedAmount };
+                const newBalance = { balance: Number.parseInt(depositAccount.balance) + parsedAmount };
                 const updatedAccount = await depositAccount.update(newBalance, { transaction });
 
                 const transferData = {
@@ -56,14 +56,14 @@ module.exports = {
             // lets remove any duplicated account numbers
             const accountNumbers = [...new Set(accounts.map(account => account.accountNumber))];
             //for each account number, get the transactions using the accountId
-            let transactions = await Promise.all(accountNumbers.map(async accountNumber => {
+            const transactions = await Promise.all(accountNumbers.map(async accountNumber => {
                 const account = await Account.findOne({ where: { accountNumber } });
                 return await Transaction.findAll({ where: { accountId: account.id } });
 
             }));
             const transactionItems = [];
-            transactions.forEach((transaction) => {
-                transaction.forEach((innerTransaction) => {
+            for (const transaction of transactions) {
+                for (const innerTransaction of transaction) {
                     const date = new Date(innerTransaction.createdAt).toLocaleString();
                     transactionItems.push({
                         date,
@@ -72,8 +72,8 @@ module.exports = {
                         reference: innerTransaction.reference,
                         description: innerTransaction.transactionDescription.charAt(0).toUpperCase() + innerTransaction.transactionDescription.slice(1),
                     });
-                });
-            });
+                }
+            }
             return transactionItems;
             // return res.status(200).json({ transactions });
         } catch (error) {
@@ -97,12 +97,12 @@ module.exports = {
                 const withdrawAccount = await Account.findOne({ where: { accountNumber } });
                 if (!withdrawAccount) return res.status(404).json({ error: "Account not found" });
 
-                const parsedAmount = parseInt(amount);
+                const parsedAmount = Number.parseInt(amount);
                 if (parsedAmount < 0) return res.status(400).json({ error: "Invalid amount" });
 
                 if (parsedAmount > withdrawAccount.balance) return res.status(400).json({ error: "Insufficient funds" });
 
-                const newBalance = { balance: parseInt(withdrawAccount.balance) - parsedAmount };
+                const newBalance = { balance: Number.parseInt(withdrawAccount.balance) - parsedAmount };
                 const updatedAccount = await withdrawAccount.update(newBalance, { transaction });
 
                 const transferData = {
