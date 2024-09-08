@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(upload.array());
 app.use(session({
     secret: randomUUID(),
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
         sameSite: "strict",

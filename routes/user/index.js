@@ -1,7 +1,7 @@
 // path: routes/user/index.js
 const express = require('express');
 const router = express.Router();
-const { account } = require('../../controllers');
+const { account, chat } = require('../../controllers');
 const { transaction } = require('../../controllers/account');
 
 // User dashboard route
@@ -61,6 +61,14 @@ router.get('/transfer', (req, res) => {
 router.get('/ticket', (req, res) => {
     if (req.session.authenticated) {
         res.render('users/dashboard', { title: 'Ticket', user: req.session.user });
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
+router.post('/sendMessage', (req, res) => {
+    if (req.session.authenticated) {
+        chat.sendMessage(req, res);
     } else {
         res.redirect('/clients/login');
     }

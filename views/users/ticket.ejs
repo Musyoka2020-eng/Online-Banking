@@ -16,22 +16,30 @@
             <div id="requester" class="requester-message">
                 <p>Hello.</p>
             </div>
-            <div id="feedback" class="feedback-message"></div>
-            <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
+            <div id="feedback" class="feedback-message">
+                <p>Hello how may I help you</p>
+            </div>
+            <div id="requester" class="requester-message">
+                <p>
+                    I am having trouble with my account, can you help me? I am having trouble with my account, can you
+                </p>
+            </div>
         </div>
     </div>
-    //fix the inner container
-    <div class="input-window">
-        <div class="inputs">
-            <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
-                placeholder="Handle" />
-            <textarea id="message" class="message-input" placeholder="Message"></textarea>
+    <form action="#">
+        <div class="input-window">
+            <div class="chat-inputs">
+                <input type="hidden" name="id" id="chat-id" value="">
+                <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
+                    placeholder="Handle" required />
+                <textarea id="message" class="message-input" placeholder="Message" required></textarea>
+            </div>
+            <div class="btns">
+                <button type="submit" id="send" class="send-chat-btn send">Send</button>
+                <button type="reset" id="cancel" class="send-chat-btn cancel">Cancel</button>
+            </div>
         </div>
-        <div class="btns">
-            <button id="send" class="send-chat-btn send">Send</button>
-            <button id="cancel" class="send-chat-btn cancel">Cancel</button>
-        </div>
-    </div>
+    </form>
 </div>
 
 <h1>Previous Tickets</h1>

@@ -90,8 +90,8 @@
                                 <h4>Agent Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST" id="agent-modal-form">
-                                    <!-- <div class="form-group">
+                                <form action="#" method="POST" id="agent-modal-form" class="form">
+                                    <!-- <div class="modal-form-group">
                                         <label for="depositFrom">Deposit
                                             From:</label>
                                         <select name="depositFrom" id="depositFrom" class="form-control">
@@ -107,30 +107,30 @@
                                                 Bank</option>
                                         </select>
                                     </div> -->
-                                    <div class="form-group">
-                                        <label for="transferFrom">Agent
+                                    <div class="modal-form-group">
+                                        <label for="transferFrom" class="label">Agent
                                             No:</label>
-                                        <input type="text" class="form-control" id="transferFrom" name="transferFrom"
-                                            placeholder="Enter agent number" required>
+                                        <input type="text" class="form-control input" id="transferFrom"
+                                            name="transferFrom" placeholder="Enter agent number" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="depositTo">Select Account
+                                    <div class="modal-form-group">
+                                        <label for="depositTo" class="label">Select Account
                                             No:</label>
-                                        <select name="depositTo" id="depositTo" class="form-control">
+                                        <select name="depositTo" id="depositTo" class="form-control input">
                                             <option value="<%= user.realAccountNo %>">
                                                 <%= user.realAccountNo %>
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="amount">Amount</label>
-                                        <input type="number" min="100" value="100" class="form-control" id="amount"
-                                            name="amount" placeholder="Enter amount" required>
+                                    <div class="modal-form-group">
+                                        <label for="amount" class="label">Amount</label>
+                                        <input type="number" min="100" value="100" class="form-control input"
+                                            id="amount" name="amount" placeholder="Enter amount" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">Enter
+                                    <div class="modal-form-group">
+                                        <label for="password" class="label">Enter
                                             Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
+                                        <input type="password" class="form-control input" id="password" name="password"
                                             placeholder="Enter password" required>
                                     </div>
                                 </form>
@@ -206,9 +206,9 @@
                                 <h4>Mobile Deposit</h4>
                             </div>
                             <div class="tab-body">
-                                <form action="#" method="POST" id="mobile-modal-form">
-                                    <div class="form-group">
-                                        <label for="depositFrom">Service
+                                <form action="#" method="POST" id="mobile-modal-form" class="form">
+                                    <div class="modal-form-group">
+                                        <label for="depositFrom" class="label">Service
                                             Provider:</label>
                                         <select name="depositFrom" id="depositFrom" class="form-control">
                                             <option value="Safaricom">Safaricom
@@ -221,30 +221,30 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="transferFrom">Mobile
+                                    <div class="modal-form-group">
+                                        <label for="transferFrom" class="label">Mobile
                                             No:</label>
-                                        <input type="text" class="form-control" id="transferFrom" name="transferFrom"
-                                            placeholder="Enter account number" required>
+                                        <input type="text" class="form-control input" id="transferFrom"
+                                            name="transferFrom" placeholder="Enter account number" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="depositTo">Select Account
+                                    <div class="modal-form-group">
+                                        <label for="depositTo" class="label">Select Account
                                             No:</label>
-                                        <select name="depositTo" id="depositTo" class="form-control">
+                                        <select name="depositTo" id="depositTo" class="form-control input">
                                             <option value="<%= user.realAccountNo %>">
                                                 <%= user.realAccountNo %>
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="amount">Amount</label>
-                                        <input type="number" min="100" value="100" class="form-control" id="amount"
-                                            name="amount" placeholder="Enter amount" required>
+                                    <div class="modal-form-group">
+                                        <label for="amount" class="label">Amount</label>
+                                        <input type="number" min="100" value="100" class="form-control input"
+                                            id="amount" name="amount" placeholder="Enter amount" required>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">Enter
+                                    <div class="modal-form-group">
+                                        <label for="password" class="label">Enter
                                             Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
+                                        <input type="password" class="form-control input" id="password" name="password"
                                             placeholder="Enter password" required>
                                     </div>
                                 </form>

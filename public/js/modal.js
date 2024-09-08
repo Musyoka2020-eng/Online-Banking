@@ -16,15 +16,15 @@ function toggleModal(modalId, btnId) {
         });
 
         // Add event listener to the document for close button clicks
-        document.addEventListener('click', function (event) {
+        document.addEventListener('click', (event) => {
             // Check if the clicked element is a close button within the modal
             if (event.target.classList.contains('close')) {
                 const closeBtn = event.target;
                 const modalToClose = closeBtn.closest('.modal');
                 // console.log('Close button clicked for modal: ' + modalToClose.id);
-                modalForm.forEach((form) => {
+                for (const form of modalForm) {
                     form.reset();
-                });
+                }
                 modalToClose.style.display = 'none';
             }
         });
@@ -33,13 +33,13 @@ function toggleModal(modalId, btnId) {
     }
 
     function windowOnClick(modal) {
-        window.onclick = function (event) {
+        window.onclick = (event) => {
             try {
-                if (event.target == modal) {
+                if (event.target === modal) {
                     modal.style.display = "none";
                 }
             } catch (error) {
-                console.log('Error: ' + error);
+                console.log(`Error: ${error}`);
             }
         }
     }
@@ -50,7 +50,7 @@ function toggleModal(modalId, btnId) {
         const lastElement = focusableElements[focusableElements.length - 1];
 
         // Trap focus within the modal
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', (event) => {
             if (event.key === 'Tab') {
                 if (event.shiftKey) { // if shift key pressed for shift + tab combination
                     if (document.activeElement === firstElement) {
@@ -73,16 +73,16 @@ const tabItems = document.querySelectorAll('.tab-bar-item');
 const tabContentItems = document.querySelectorAll('.tab-content .tab-pane');
 // Function to hide all tab content
 function hideAllTabContent() {
-    tabContentItems.forEach(item => {
+    for (const item of tabContentItems) {
         item.classList.remove('active-tab-content');
-    });
+    }
 }
 // Function to show tab content based on the clicked tab
 function showTabContent(tabId) {
     hideAllTabContent();
-    tabItems.forEach(tab => {
+    for (const tab of tabItems) {
         tab.classList.remove('active-tab');
-    });
+    }
     const clickedTab = document.getElementById(tabId);
     if (!clickedTab) {
         return;
@@ -90,7 +90,7 @@ function showTabContent(tabId) {
     clickedTab.classList.add('active-tab');
     // Hide all tab content
     // Show the selected tab content with animation
-    const contentId = tabId + '-tab';
+    const contentId = `${tabId}-tab`;
     const contentItem = document.getElementById(contentId);
     if (contentItem) {
         contentItem.classList.add('active-tab-content');
@@ -107,26 +107,25 @@ function getmId(modal) {
 }
 
 // Add click event listeners to tab items
-tabItems.forEach(item => {
+for (const item of tabItems) {
     item.addEventListener('click', (e) => {
         const clickedTabId = e.target.closest(
             '.tab-bar-item').id;
         hideAllTabContent();
         showTabContent(clickedTabId);
     });
-});
+}
 const infoButton = document.querySelectorAll('.tab-info-icon');
 const tabInfoContent = document.querySelectorAll('.tab-info-content');
 
 function hideAllTabInfoContent() {
-    tabInfoContent.forEach(item => {
-        item.classList.remove(
-            'active-tab-info-content');
-    });
+    for (const item of tabInfoContent) {
+        item.classList.remove('active-tab-info-content');
+    }
 }
 
 function showTabInfoContent(tabId) {
-    const contentId = tabId + '-tabinfo-content';
+    const contentId = `${tabId}-tabinfo-content`;
     const classname = 'active-tab-info-content';
     const contentItem = document.getElementById(contentId);
     if (contentItem) {
@@ -138,17 +137,14 @@ function showTabInfoContent(tabId) {
     }
 }
 // Add click event listener to the "Info" button
-infoButton.forEach(button => {
+for (const button of infoButton) {
     button.addEventListener('click', (e) => {
-        let infoButtonId = e.target.closest(
-            '.tab-info-icon')
-            .id;
-        infoButtonId = infoButtonId.split('-')[
-            0];
+        let infoButtonId = e.target.closest('.tab-info-icon').id;
+        infoButtonId = infoButtonId.split('-')[0];
         // console.log(infoButtonId);
         showTabInfoContent(infoButtonId);
     });
-});
+}
 
 // $("#banks").click(function() {
 //     $("#banks-tab").addClass("active-tab-content");

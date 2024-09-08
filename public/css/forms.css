@@ -19,16 +19,16 @@
     border-bottom: 2px solid #111;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
 }
 
-label {
+.label {
     margin-top: 1em;
 }
 
-input {
+.input {
     padding: 8px;
     margin-top: 0.5em;
     margin-bottom: 1em;
@@ -47,5 +47,4 @@ input {
 
 .form-btn:hover {
     background-color: #0787ffae;
-    ;
 }

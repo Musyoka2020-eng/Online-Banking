@@ -1,10 +1,10 @@
 //Withdrawal modal handler
 async function validateWithdrawForms(wformData) {
     let isValid = true;
-    let amount = wformData.get('amount');
-    let password = wformData.get('password');
-    let transferTo = wformData.get('transferTo');
-    let withdrawFrom = wformData.get('withdrawFrom');
+    const amount = wformData.get('amount');
+    const password = wformData.get('password');
+    const transferTo = wformData.get('transferTo');
+    const withdrawFrom = wformData.get('withdrawFrom');
 
     if (amount < 100) {
         alert('Amount must be at least 100');

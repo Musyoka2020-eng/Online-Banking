@@ -13,5 +13,6 @@ db.models.Client = require('./Client')(sequelize, Sequelize.DataTypes);
 db.models.Account = require('./Account')(sequelize, Sequelize.DataTypes);
 db.models.Transaction = require('./Transaction')(sequelize, Sequelize.DataTypes);
 db.models.Provider = require('./Provider')(sequelize, Sequelize.DataTypes);
+db.models.Chat = require('./Chat')(sequelize, Sequelize.DataTypes);
 
 module.exports = db
