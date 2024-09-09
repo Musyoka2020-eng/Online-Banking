@@ -4,9 +4,15 @@ $(document).ready(() => {
         const message = $('#message').val();
         const handle = $('#handle').val();
         const chatID = $('#chat-id').val();
+        const agent = $('#agentId').val();
 
         if (message === '' || handle === '') {
             alert('Please enter a message and handle');
+            return;
+        }
+
+        if (agent === '') {
+            alert('Please select an agent');
             return;
         }
 
@@ -37,24 +43,39 @@ $(document).ready(() => {
 
         // Function to proceed after chat ID is generated or already exists
         function proceedWithChat(chatID) {
-            console.log(`Message: ${message}, Handle: ${handle}, Chat ID: ${chatID}`);
-            $.ajax({
-                url: '/userDashboard/sendMessage',
-                type: 'POST',
-                data: {
-                    message,
-                    handle,
-                    chatID
+            console.log(`Message: ${message}, Handle: ${handle}, Chat ID: ${chatID}, Agent: ${agent}`);
+            const data = { message, handle, chatID, receiver: agent, sender: 'client' };
+            const url = '/userDashboard/sendMessage';
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                success: (data) => {
+                body: JSON.stringify(data),
+            };
+
+            fetch(url, options)
+                .then(res => res.json())
+                .then(data => {
                     console.log(data);
                     $('#message').val('');
-                    // $('#handle').val('');
-                },
-                error: (err) => {
+                    $('#handle').val('');
+                    // $('#chat').append(`<div class="message"><p>${data.message}</p><span>${data.handle}</span></div>`);
+                })
+                .catch(err => {
                     console.error(err);
-                }
-            });
+                    alert('Error sending message');
+                });
+        }
+    });
+
+    $('#agent').change((e) => {
+        e.preventDefault();
+        const agent = $('#agent').val();
+        const agentId = $('#agentId').val();
+        if (agent !== agentId) {
+            $('#agentId').val(agent);
+            $('#chat-id').val('');
         }
     });
 });

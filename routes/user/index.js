@@ -66,6 +66,7 @@ router.get('/ticket', (req, res) => {
     }
 });
 
+// recieve data from ticket.js
 router.post('/sendMessage', (req, res) => {
     if (req.session.authenticated) {
         chat.sendMessage(req, res);

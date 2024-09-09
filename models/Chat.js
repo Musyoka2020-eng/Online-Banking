@@ -1,11 +1,13 @@
-export default (sequelize, DataTypes) => {
+// const Client = require("./Client");
+
+module.exports = (sequelize, DataTypes) => {
     const Chat = sequelize.define('Chat', {
         // Define your Chat model fields
-        senderId: {
+        clientId: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        receiverId: {
+        agentId: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -13,31 +15,27 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        handle: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        message: {
-            type: DataTypes.STRING,
+        sender: {
+            type: DataTypes.ENUM('client', 'agent'),
             allowNull: false,
         },
         status: {
-            type: DataTypes.ENUM('sent', 'delivered', 'read'),
+            type: DataTypes.ENUM('active', 'closed'),
             allowNull: false,
         },
     });
 
     // Associate Chat with Client
-    Chat.associate = (models) => {
-        Chat.belongsTo(models.Client, {
-            foreignKey: 'senderId',
-            as: 'sender',
-        });
-        Chat.belongsTo(models.Client, {
-            foreignKey: 'receiverId',
-            as: 'receiver',
-        });
-    };
+    // Chat.associate = (models) => {
+    //     Chat.belongsTo(models.Client, {
+    //         foreignKey: 'senderId',
+    //         as: 'sender',
+    //     });
+    //     Chat.belongsTo(models.Client, {
+    //         foreignKey: 'receiverId',
+    //         as: 'receiver',
+    //     });
+    // };
 
     return Chat;
 };

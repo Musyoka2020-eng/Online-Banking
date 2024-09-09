@@ -1,65 +1,90 @@
-<div class="chat-outer-container">
-    <div class="chat-header">
-        <div class="chat-title">
-            <h4>Ticket Chat</h4>
-            <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
-        </div>
-        <div class="backdash">
-            <a href="/userDashboard" class="backdash-link">Dashboard</a>
-        </div>
-    </div>
-    <div class="chat-inner-container">
-        <div id="chat-window" class="chat-window">
-            <div id="feedback" class="feedback-message">
+<div class="main-chat-container">
+    <div class="chat-outer-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <h4>Ticket Chat</h4>
                 <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
             </div>
-            <div id="requester" class="requester-message">
-                <p>Hello.</p>
-            </div>
-            <div id="feedback" class="feedback-message">
-                <p>Hello how may I help you</p>
-            </div>
-            <div id="requester" class="requester-message">
-                <p>
-                    I am having trouble with my account, can you help me? I am having trouble with my account, can you
-                </p>
+            <form action="#">
+                <div class="select-agent">
+                    <select class="agent-list" name="agent" id="agent">
+                        <option value="">Select Agent</option>
+                        <option value="1">Agent 1</option>
+                        <option value="2">Agent 2</option>
+                        <option value="3">Agent 3</option>
+                        <option value="4">Agent 4</option>
+                        <option value="5">Agent 5</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="chat-inner-container">
+            <div id="chat-window" class="chat-window">
+                <div id="feedback" class="feedback-message">
+                    <p>Welcome to the chat! Please enter your handle and message to chat with an agent.</p>
+                </div>
+                <div id="requester" class="requester-message">
+                    <p>Hello.</p>
+                </div>
+                <div id="feedback" class="feedback-message">
+                    <p>Hello how may I help you</p>
+                </div>
+                <div id="requester" class="requester-message">
+                    <p>
+                        I am having trouble with my account, can you help me? I am having trouble with my account, can
+                        you
+                    </p>
+                </div>
+                <div id="feedback" class="feedback-message">
+                    <p>
+                        Alright I will help you with that, please provide me with first four digit and last four digits
+                        of your account number and I will look
+                        into your
+                    </p>
+                </div>
+                <div id="requester" class="requester-message">
+                    <p>
+                        My account number starts with 1234 and ends with 5678
+                    </p>
+                </div>
             </div>
         </div>
+        <form action="#">
+            <div class="input-window">
+                <div class="chat-inputs">
+                    <input type="hidden" name="agentId" id="agentId">
+                    <input type="hidden" name="id" id="chat-id" value="">
+                    <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
+                        placeholder="Handle" required />
+                    <textarea id="message" class="message-input" placeholder="Message" required></textarea>
+                </div>
+                <div class="btns">
+                    <button type="submit" id="send" class="send-chat-btn send">Send</button>
+                    <button type="reset" id="cancel" class="send-chat-btn cancel">Cancel</button>
+                </div>
+            </div>
+        </form>
     </div>
-    <form action="#">
-        <div class="input-window">
-            <div class="chat-inputs">
-                <input type="hidden" name="id" id="chat-id" value="">
-                <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
-                    placeholder="Handle" required />
-                <textarea id="message" class="message-input" placeholder="Message" required></textarea>
-            </div>
-            <div class="btns">
-                <button type="submit" id="send" class="send-chat-btn send">Send</button>
-                <button type="reset" id="cancel" class="send-chat-btn cancel">Cancel</button>
-            </div>
-        </div>
-    </form>
-</div>
 
-<h1>Previous Tickets</h1>
-<div id="tickets" class="tickets">
-    <div class="ticket">
-        <div class="ticket-info">
-            <h3>Subject</h3>
-            <p>Message</p>
+    <div id="tickets" class="tickets">
+        <h1 style="padding: 3px;">Previous Tickets</h1>
+        <div class="ticket">
+            <div class="ticket-info">
+                <h3>Subject</h3>
+                <p>Message</p>
+            </div>
+            <div class="ticket-view">
+                View Ticket
+            </div>
         </div>
-        <div class="ticket-view">
-            View Ticket
-        </div>
-    </div>
-    <div class="ticket">
-        <div class="ticket-info">
-            <h3>Subject</h3>
-            <p>Message</p>
-        </div>
-        <div class="ticket-view">
-            View Ticket
+        <div class="ticket">
+            <div class="ticket-info">
+                <h3>Subject</h3>
+                <p>Message</p>
+            </div>
+            <div class="ticket-view">
+                View Ticket
+            </div>
         </div>
     </div>
 </div>
