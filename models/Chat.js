@@ -15,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        sender: {
-            type: DataTypes.ENUM('client', 'agent'),
-            allowNull: false,
-        },
         status: {
             type: DataTypes.ENUM('active', 'closed'),
             allowNull: false,

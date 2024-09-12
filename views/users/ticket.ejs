@@ -7,8 +7,8 @@
             </div>
             <form action="#">
                 <div class="select-agent">
-                    <select class="agent-list" name="agent" id="agent">
-                        <option value="">Select Agent</option>
+                    <select class="agent-list" name="chat_agent" id="chat_agent">
+                        <option value="0">Select Agent</option>
                         <option value="1">Agent 1</option>
                         <option value="2">Agent 2</option>
                         <option value="3">Agent 3</option>
@@ -52,7 +52,7 @@
         <form action="#">
             <div class="input-window">
                 <div class="chat-inputs">
-                    <input type="hidden" name="agentId" id="agentId">
+                    <input type="hidden" name="chat_agentId" id="chat_agentId" value="">
                     <input type="hidden" name="id" id="chat-id" value="">
                     <input id="handle" class="handle-input" onkeyup="this.value = this.value.toUpperCase()" type="text"
                         placeholder="Handle" required />

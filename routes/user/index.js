@@ -75,5 +75,21 @@ router.post('/sendMessage', (req, res) => {
     }
 });
 
+router.get('/getMessages/:chatID', (req, res) => {
+    if (req.session.authenticated) {
+        chat.getMessages(req, res);
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
+router.get('/getChatID', (req, res) => {
+    if (req.session.authenticated) {
+        chat.getChatID(req, res);
+    } else {
+        res.redirect('/clients/login');
+    }
+});
+
 // Export the router
 module.exports = router;

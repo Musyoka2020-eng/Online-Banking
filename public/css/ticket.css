@@ -67,6 +67,7 @@
 
 .chat-window {
     max-height: 400px;
+    height: 400px;
     overflow: hidden;
     overflow-y: auto;
     padding: 3px;
@@ -74,24 +75,66 @@
     margin-bottom: 10px;
 }
 
-.requester-message,
-.feedback-message {
-    background-color: #f5cbcb;
-    padding: 10px;
-    border-radius: 20px 20px 20px 0;
-    margin: 5px 0;
-}
 
 .chat-window .requester-message {
     border-radius: 20px 20px 0 20px;
-    float: right;
-    clear: both;
+    color: #0066cc;
+    align-self: flex-end;
+    padding: 10px;
+    margin: 5px 0;
+    margin-left: auto;
+    width: fit-content;
 }
 
 .chat-window .feedback-message {
-    background-color: #bbd5f4;
-    float: left;
-    clear: both;
+    background-color: #fbf1f1;
+    color: #d9534f;
+    border-radius: 20px 20px 20px 0;
+    align-self: flex-start;
+    padding: 10px;
+    margin: 5px 0;
+    margin-right: auto;
+    width: fit-content;
+}
+
+/* Container for each handle and its messages */
+.handle-container {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+}
+
+/* Style for handle name */
+.handle-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* Container for each message */
+.message-container {
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #e6f0ff;
+    max-width: 60%;
+    display: flex;
+    word-wrap: break-word;
+}
+
+/* Style for "waiting for reply" message */
+.waiting-for-reply {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .input-window {
@@ -205,5 +248,4 @@
 
 .ticket-view:hover {
     background-color: #a2b8cf;
-
 }
