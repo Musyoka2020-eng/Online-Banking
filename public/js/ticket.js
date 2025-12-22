@@ -81,7 +81,6 @@ $(document).ready(() => {
 
     async function fetchMessages(chatID) {
         const url = `/userDashboard/getMessages/${chatID}`;
-
         try {
             const response = await fetch(url);
             const data = await response.json();

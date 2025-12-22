@@ -4,7 +4,11 @@ const { createCanvas, registerFont } = require('canvas');
 const { type } = require('express/lib/response');
 
 // Register any custom fonts if needed
-registerFont('public/fonts/open-sans/OpenSans-Bold.ttf', { family: 'CustomFont' });
+try {
+    registerFont('public/fonts/open-sans/OpenSans-Bold.ttf', { family: 'CustomFont' });
+} catch (err) {
+    console.warn('Warning: Custom font not found, using default font');
+}
 
 module.exports = (sequelize, DataTypes) => {
     const Client = sequelize.define('Client', {

@@ -1,13 +1,15 @@
+require('dotenv').config();
+
 const express = require("express");
 const path = require("node:path");
 const multer = require("multer");
-const { randomUUID } = require("node:crypto");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const upload = multer();
 const app = express();
 const db = require('./models');
 const port = process.env.PORT || 3000;
+const sessionSecret = process.env.SESSION_SECRET || 'your-default-secret-change-in-production';
 // some global variables
 
 
@@ -17,9 +19,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(upload.array());
 app.use(session({
-    secret: randomUUID(),
-    resave: true,
-    saveUninitialized: true,
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
         sameSite: "strict",
         // secure: true,
@@ -79,19 +81,30 @@ app.set("layout", "layouts/layout");
 const home = require("./routes/home");
 const client = require("./routes/clients");
 const userDashboard = require("./routes/user");
+const admin = require("./routes/admin");
 
 // Use the routes middlewares in the app
 app.use("/", home);
 app.use("/clients", client);
 app.use("/userDashboard", userDashboard);
+app.use("/admin", admin);
 
 (async () => {
     await db.sequelize.sync()
 })();
 
-// 404 route
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error("Error:", err.message);
+    res.status(err.status || 500).json({
+        error: err.message || "Internal Server Error",
+        status: err.status || 500
+    });
+});
+
+// 404 route (must be after other routes)
 app.use("*", (req, res) => {
-    res.render("404", {
+    res.status(404).render("404", {
         title: "Page Not Found"
     });
 });
